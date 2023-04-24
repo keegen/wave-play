@@ -2,7 +2,7 @@ name: wave
 services:
 - name: web
   github:
-    repo: thedevdojo/wave
+    repo: keegen/wave-play
     branch: main
     deploy_on_push: true
   run_command: php artisan migrate --force ; heroku-php-apache2 public/

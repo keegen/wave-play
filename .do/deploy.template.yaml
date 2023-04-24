@@ -4,7 +4,7 @@ spec:
   - name: web
     git:
       branch: main
-      repo_clone_url: https://github.com/thedevdojo/wave.git
+      repo_clone_url: https://github.com/keegen/wave-play.git
     run_command: php artisan migrate --force ; heroku-php-apache2 public/
     envs:
     - key: APP_NAME
