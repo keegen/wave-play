@@ -1,5 +1,5 @@
 spec:
-  name: wave
+  name: wave-play
   services:
   - name: web
     git:
