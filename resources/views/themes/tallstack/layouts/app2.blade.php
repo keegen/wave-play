@@ -47,7 +47,6 @@
     @livewireStyles
 </head>
 <body class="h-full">
-  <div class="bg-white">
     
     <!--
     This example requires updating your template:
@@ -355,7 +354,7 @@
       </div>
     </div>
   
-    </div>
+
 
 
 
