@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="{{ app()->getLocale() }}" class="h-full">
 <head>
-
+  <script src="https://cdn.tailwindcss.com"></script>
     @if(isset($seo->title))
         <title>{{ $seo->title }}</title>
     @else
@@ -47,6 +47,7 @@
     @livewireStyles
 </head>
 <body class="h-full">
+  <div class="bg-white">
     
     <!--
     This example requires updating your template:
@@ -354,7 +355,7 @@
       </div>
     </div>
   
-
+    </div>
 
 
 
