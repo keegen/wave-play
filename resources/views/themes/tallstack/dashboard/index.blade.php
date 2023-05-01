@@ -4,8 +4,8 @@
 @section('content')
 
 <div>
-	<h2 class="text-base font-semibold leading-6 text-gray-900">Projects</h2>
-	<p class="mt-1 text-sm text-gray-500">You haven’t created a project yet. Get started by selecting a template or start from an empty project.</p>
+	<h2 class="text-base font-semibold leading-6 text-gray-900">Welcome to your Personal Dealer Site</h2>
+	<p class="mt-1 text-sm text-gray-500">Let's get your site set up.</p>
 	<ul role="list" class="mt-6 grid grid-cols-1 gap-6 border-b border-t border-gray-200 py-6 sm:grid-cols-2">
 	  <li class="flow-root">
 		<div class="relative -m-2 flex items-center space-x-4 rounded-xl p-2 focus-within:ring-2 focus-within:ring-indigo-500 hover:bg-gray-50">
