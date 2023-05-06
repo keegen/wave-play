@@ -28,6 +28,4 @@ Wave::routes();
 
 Route::view('templates', 'theme::01');
 
-Route::get('/terms', function () {
-    return 'Hello World';
-});
+Route::view('templates', 'terms');
