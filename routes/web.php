@@ -28,4 +28,4 @@ Wave::routes();
 
 Route::view('templates', 'theme::01');
 
-Route::view('templates', 'terms');
+Route::view('terms', 'terms');
