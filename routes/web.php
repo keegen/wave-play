@@ -28,7 +28,7 @@ Wave::routes();
 
 Route::view('templates', 'theme::01');
 
-Route::get(‘terms’, function () {
+Route::get(‘/terms’, function () {
 
     return view(‘terms’);
     
