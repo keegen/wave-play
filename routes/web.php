@@ -28,3 +28,9 @@ Route::group(['prefix' => 'admin'], function () {
 Wave::routes();
 
 Route::view('templates', 'theme::01');
+
+Route::get(‘/terms_service’, function () {
+
+    return view(‘terms_service’);
+    
+    });
