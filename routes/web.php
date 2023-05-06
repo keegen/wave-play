@@ -31,6 +31,6 @@ Route::view('templates', 'theme::01');
 
 Route::get(‘/terms_service’, function () {
 
-    return view(‘theme::terms_service’);
+    return view(‘terms_service’);
     
     });
