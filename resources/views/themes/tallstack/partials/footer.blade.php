@@ -23,7 +23,7 @@
 
       </div>
       <div class="mt-8 md:order-1 md:mt-0">
-        <p class="text-center text-xs leading-5 text-gray-500">&copy; 2023 Personal Dealer Site. All rights reserved.   <a href="/terms">Terms of Service</a>     <a href="#">Privacy</a></p>
+        <p class="text-center text-xs leading-5 text-gray-500">&copy; 2023 Personal Dealer Site. All rights reserved. &nbsp;|&nbsp;<a href="/terms">Terms of Service</a>&nbsp;|&nbsp;<a href="#">Privacy</a></p>
       </div>
     </div>
   </footer>
