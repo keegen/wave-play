@@ -70,6 +70,7 @@
   <body class="h-full">
   ```
 -->
+<div class="bg-white">
     <div class="relative z-50 lg:hidden" role="dialog" aria-modal="true">
       <!--
         Off-canvas menu backdrop, show/hide based on off-canvas menu state.
@@ -106,7 +107,7 @@
               To: "opacity-0"
           -->
           <div class="absolute left-full top-0 flex w-16 justify-center pt-5">
-            <button type="button" class="-m-2.5 p-2.5">
+            <button type="button" class="-m-2.5 p-2.5" @click="open = false">
               <span class="sr-only">Close sidebar</span>
               <svg class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
@@ -392,7 +393,7 @@
         </div>
       </main>
     </div>
-
+  </div>
   
   
 <!-- End of New Template -->
@@ -406,6 +407,7 @@
 
 <!-- Scripts -->
 <script src="{{ asset('themes/' . $theme->folder . '/js/app.js') }}"></script>
+
 
 @yield('javascript')
 

@@ -29,4 +29,5 @@ Wave::routes();
 Route::view('templates', 'theme::01');
 
 Route::view('terms', 'theme::terms');
+
 Route::view('privacy', 'theme::privacy');
