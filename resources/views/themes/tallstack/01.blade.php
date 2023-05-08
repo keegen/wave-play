@@ -22,7 +22,7 @@
 <div class="relative isolate overflow-hidden bg-white">
     <div class="mx-auto max-w-7xl px-6 pb-24 pt-10 sm:pb-32 lg:flex lg:px-8 lg:py-40">
       <div class="mx-auto max-w-2xl lg:mx-0 lg:max-w-xl lg:flex-shrink-0 lg:pt-8">
-            <img class="inline-block h-20 w-20 rounded-full" src="http://wave-play.test/storage/avatars/admin.png?1682294298" alt="">
+            <img class="inline-block h-20 w-20 rounded-full" src="http://personaldealer.site/storage/avatars/admin.png?1682294298" alt="">
         <h1 class="mt-10 text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">Hi! I'm Dan!</h1>
         <p class="mt-6 text-lg leading-8 text-gray-600">I'm a automotive sales professional at the best MB dealership in Louisiana, and I can help you buy a car and enjoy the best rates and experience. Contact me or see the inventory below to experience the best.</p>
         <div class="mt-10 flex items-center gap-x-6">
