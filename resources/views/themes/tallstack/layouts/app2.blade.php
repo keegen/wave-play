@@ -14,12 +14,6 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="url" content="{{ url('/') }}">
 
-    <link rel="stylesheet" href="/v2-assets/components.css?hash=4014c0284a250be60e7a09b97ceb56b4">
-    <script src="/v2-assets/components.js?hash=c42e44f6c92eb7517e1a4e8bd13028a6"></script>
-    <link rel="modulepreload" href="https://tailwindui.com/build/assets/iframe-alpine-964dceff.js">
-    <link rel="modulepreload" href="https://tailwindui.com/build/assets/iframe-a81dc9a8.js">
-    <link rel="modulepreload" href="https://tailwindui.com/build/assets/_commonjsHelpers-87174ba5.js">
-    <script type="module" src="https://tailwindui.com/build/assets/iframe-alpine-964dceff.js"></script>
 
     <link rel="icon" href="{{ setting('site.favicon', '/wave/favicon.png') }}" type="image/x-icon">
      {{-- Social Share Open Graph Meta Tags --}}
