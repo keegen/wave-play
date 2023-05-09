@@ -14,7 +14,6 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="url" content="{{ url('/') }}">
 
-
     <link rel="icon" href="{{ setting('site.favicon', '/wave/favicon.png') }}" type="image/x-icon">
      {{-- Social Share Open Graph Meta Tags --}}
      @if(isset($seo->title) && isset($seo->description) && isset($seo->image))
@@ -47,7 +46,7 @@
  @livewireStyles
   </head>
 
-  <body data-new-gr-c-s-check-loaded="14.1107.0" data-gr-ext-installed=""><div class="" style="">
+  <body data-new-gr-c-s-check-loaded="14.1107.0" data-gr-ext-installed="">
   <div class="min-h-[712px] bg-gray-100">
     
   <!--
