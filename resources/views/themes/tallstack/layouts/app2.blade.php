@@ -196,23 +196,20 @@
                                         x-state-description="Current: &quot;text-white&quot;, Default: &quot;text-indigo-100&quot;">Home</a>
                                     <a href="#"
                                         class="text-indigo-100 rounded-md bg-white bg-opacity-0 px-3 py-2 text-sm font-medium hover:bg-opacity-10"
-                                        x-state-description="undefined: &quot;text-white&quot;, undefined: &quot;text-indigo-100&quot;">Profile</a>
+                                        x-state-description="undefined: &quot;text-white&quot;, undefined: &quot;text-indigo-100&quot;">Site Info</a>
                                     <a href="#"
                                         class="text-indigo-100 rounded-md bg-white bg-opacity-0 px-3 py-2 text-sm font-medium hover:bg-opacity-10"
-                                        x-state-description="undefined: &quot;text-white&quot;, undefined: &quot;text-indigo-100&quot;">Resources</a>
+                                        x-state-description="undefined: &quot;text-white&quot;, undefined: &quot;text-indigo-100&quot;">Inventory</a>
                                     <a href="#"
                                         class="text-indigo-100 rounded-md bg-white bg-opacity-0 px-3 py-2 text-sm font-medium hover:bg-opacity-10"
-                                        x-state-description="undefined: &quot;text-white&quot;, undefined: &quot;text-indigo-100&quot;">Company
+                                        x-state-description="undefined: &quot;text-white&quot;, undefined: &quot;text-indigo-100&quot;">Theme
                                         Directory</a>
-                                    <a href="#"
-                                        class="text-indigo-100 rounded-md bg-white bg-opacity-0 px-3 py-2 text-sm font-medium hover:bg-opacity-10"
-                                        x-state-description="undefined: &quot;text-white&quot;, undefined: &quot;text-indigo-100&quot;">Openings</a>
 
                                 </nav>
                             </div>
                             <div>
                                 <div class="mx-auto w-full max-w-md">
-                                    <label for="mobile-search" class="sr-only">Search</label>
+                                    <!-- <label for="mobile-search" class="sr-only">Search</label>
                                     <div class="relative text-white focus-within:text-gray-600">
                                         <div
                                             class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
@@ -225,7 +222,7 @@
                                         </div>
                                         <input id="mobile-search"
                                             class="block w-full rounded-md border-0 bg-white/20 py-1.5 pl-10 pr-3 text-white placeholder:text-white focus:bg-white focus:text-gray-900 focus:ring-0 focus:placeholder:text-gray-500 sm:text-sm sm:leading-6"
-                                            placeholder="Search" type="search" name="search">
+                                            placeholder="Search" type="search" name="search"> -->
                                     </div>
                                 </div>
                             </div>
