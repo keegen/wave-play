@@ -334,7 +334,6 @@
                                 <h2 class="sr-only" id="section-1-title">Section title</h2>
                                 <div class="overflow-hidden rounded-lg bg-white shadow">
                                     <div class="p-6">
-                                        @yield('content')
                                     </div>
                                 </div>
                             </section>
