@@ -323,51 +323,7 @@
 
             </header>
             <main class="-mt-24 pb-8">
-                <div class="mx-auto max-w-3xl px-4 sm:px-6 lg:max-w-7xl lg:px-8">
-                    <h1 class="sr-only">Page title</h1>
-                    @yield('content')
-                    <!-- Main 3 column grid -->
-                    <div class="grid grid-cols-1 items-start gap-4 lg:grid-cols-3 lg:gap-8">
-                        <!-- Left column 
-                        <div class="grid grid-cols-1 gap-4 lg:col-span-2">
-                            <section aria-labelledby="section-1-title">
-                                <h2 class="sr-only" id="section-1-title">Section title</h2>
-                                <div class="overflow-hidden rounded-lg bg-white shadow">
-                                    <div class="p-6">
-                                    </div>
-                                </div>
-                            </section>
-                        </div>-->
-
-                        <!-- Right column 
-                        <div class="grid grid-cols-1 gap-4">
-                            <section aria-labelledby="section-2-title">
-                                <h2 class="sr-only" id="section-2-title">Section title</h2>
-                                <div class="overflow-hidden rounded-lg bg-white shadow">
-                                    <div class="p-6">
-                                        <x-placeholder>
-                                            <div
-                                                class="relative h-96 overflow-hidden rounded border border-dashed border-gray-400 opacity-75">
-                                                <svg class="absolute inset-0 h-full w-full stroke-gray-900/10"
-                                                    fill="none">
-                                                    <defs>
-                                                        <pattern id="pattern-7a429f7f-112e-4ecd-bb4c-a0ab3ae94252" x="0"
-                                                            y="0" width="10" height="10" patternUnits="userSpaceOnUse">
-                                                            <path d="M-3 13 15-5M-5 5l18-18M-1 21 17 3"></path>
-                                                        </pattern>
-                                                    </defs>
-                                                    <rect stroke="none"
-                                                        fill="url(#pattern-7a429f7f-112e-4ecd-bb4c-a0ab3ae94252)"
-                                                        width="100%" height="100%"></rect>
-                                                </svg>
-                                            </div>
-                                        </x-placeholder>
-                                    </div>
-                                </div>
-                            </section>
-                        </div> -->
-                    </div>
-                </div>
+              @yield('content')
             </main>
             <footer>
                 <div class="mx-auto max-w-3xl px-4 sm:px-6 lg:max-w-7xl lg:px-8">
