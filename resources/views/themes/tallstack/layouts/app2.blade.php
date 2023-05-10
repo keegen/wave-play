@@ -144,7 +144,7 @@
                           </div>
                         </div>
 
-                        <!-- Search -->
+                        <!-- Search 
                         <div class="min-w-0 flex-1 px-12 lg:hidden">
                             <div class="mx-auto w-full max-w-xs">
                                 <label for="desktop-search" class="sr-only">Search</label>
@@ -161,7 +161,7 @@
                                         placeholder="Search" type="search" name="search">
                                 </div>
                             </div>
-                        </div>
+                        </div>-->
 
                         <!-- Menu button -->
                         <div class="absolute right-0 flex-shrink-0 lg:hidden">
@@ -202,8 +202,7 @@
                                         x-state-description="undefined: &quot;text-white&quot;, undefined: &quot;text-indigo-100&quot;">Inventory</a>
                                     <a href="#"
                                         class="text-indigo-100 rounded-md bg-white bg-opacity-0 px-3 py-2 text-sm font-medium hover:bg-opacity-10"
-                                        x-state-description="undefined: &quot;text-white&quot;, undefined: &quot;text-indigo-100&quot;">Theme
-                                        Directory</a>
+                                        x-state-description="undefined: &quot;text-white&quot;, undefined: &quot;text-indigo-100&quot;">Theme</a>
 
                                 </nav>
                             </div>
@@ -360,7 +359,7 @@
             <footer>
                 <div class="mx-auto max-w-3xl px-4 sm:px-6 lg:max-w-7xl lg:px-8">
                     <div class="border-t border-gray-200 py-8 text-center text-sm text-gray-500 sm:text-left"><span
-                            class="block sm:inline">© 2021 Your Company, Inc.</span> <span class="block sm:inline">All
+                            class="block sm:inline">© 2023 Personal Dealer Site</span> <span class="block sm:inline">All
                             rights reserved.</span></div>
                 </div>
             </footer>
