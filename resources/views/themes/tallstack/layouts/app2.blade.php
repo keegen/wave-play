@@ -58,7 +58,7 @@
     <div class="min-h-[712px] bg-gray-100">
 
         <div class="min-h-full">
-            <header class="bg-indigo-600 pb-24" x-data="Components.popover({ open: false, focus: true })"
+            <header class="bg-blue-600 pb-24" x-data="Components.popover({ open: false, focus: true })"
                 x-init="init()" @keydown.escape="onEscape" @close-popover-group.window="onClosePopoverGroup">
                 <div class="mx-auto max-w-3xl px-4 sm:px-6 lg:max-w-7xl lg:px-8">
                     <div class="relative flex items-center justify-center py-5 lg:justify-between">
@@ -67,7 +67,7 @@
                             <a href="#">
                                 <span class="sr-only">Your Company</span>
                                 <img class="h-8 w-auto"
-                                    src="https://tailwindui.com/img/logos/mark.svg?color=indigo&amp;shade=300"
+                                    src="https://tailwindui.com/img/logos/mark.svg?color=blue&amp;shade=300"
                                     alt="Your Company">
                             </a>
                         </div>
@@ -75,7 +75,7 @@
                         <!-- Right section on desktop -->
                         <div class="hidden lg:ml-4 lg:flex lg:items-center lg:pr-0.5">
                             <button type="button"
-                                class="flex-shrink-0 rounded-full p-1 text-indigo-200 hover:bg-white hover:bg-opacity-10 hover:text-white focus:outline-none focus:ring-2 focus:ring-white">
+                                class="flex-shrink-0 rounded-full p-1 text-blue-200 hover:bg-white hover:bg-opacity-10 hover:text-white focus:outline-none focus:ring-2 focus:ring-white">
                                 <span class="sr-only">View notifications</span>
                                 <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                                     stroke="currentColor" aria-hidden="true">
@@ -167,7 +167,7 @@
                         <div class="absolute right-0 flex-shrink-0 lg:hidden">
                             <!-- Mobile menu button -->
                             <button type="button"
-                                class="inline-flex items-center justify-center rounded-md bg-transparent p-2 text-indigo-200 hover:bg-white hover:bg-opacity-10 hover:text-white focus:outline-none focus:ring-2 focus:ring-white"
+                                class="inline-flex items-center justify-center rounded-md bg-transparent p-2 text-blue-200 hover:bg-white hover:bg-opacity-10 hover:text-white focus:outline-none focus:ring-2 focus:ring-white"
                                 @click="toggle" @mousedown="if (open) $event.preventDefault()" aria-expanded="false"
                                 :aria-expanded="open.toString()">
                                 <span class="sr-only">Open main menu</span>
@@ -193,16 +193,16 @@
                                     <a href="#"
                                         class="text-white rounded-md bg-white bg-opacity-0 px-3 py-2 text-sm font-medium hover:bg-opacity-10"
                                         aria-current="page" x-state:on="Current" x-state:off="Default"
-                                        x-state-description="Current: &quot;text-white&quot;, Default: &quot;text-indigo-100&quot;">Home</a>
+                                        x-state-description="Current: &quot;text-white&quot;, Default: &quot;text-blue-100&quot;">Home</a>
                                     <a href="#"
-                                        class="text-indigo-100 rounded-md bg-white bg-opacity-0 px-3 py-2 text-sm font-medium hover:bg-opacity-10"
-                                        x-state-description="undefined: &quot;text-white&quot;, undefined: &quot;text-indigo-100&quot;">Site Info</a>
+                                        class="text-blue-100 rounded-md bg-white bg-opacity-0 px-3 py-2 text-sm font-medium hover:bg-opacity-10"
+                                        x-state-description="undefined: &quot;text-white&quot;, undefined: &quot;text-blue-100&quot;">Site Info</a>
                                     <a href="#"
-                                        class="text-indigo-100 rounded-md bg-white bg-opacity-0 px-3 py-2 text-sm font-medium hover:bg-opacity-10"
-                                        x-state-description="undefined: &quot;text-white&quot;, undefined: &quot;text-indigo-100&quot;">Inventory</a>
+                                        class="text-blue-100 rounded-md bg-white bg-opacity-0 px-3 py-2 text-sm font-medium hover:bg-opacity-10"
+                                        x-state-description="undefined: &quot;text-white&quot;, undefined: &quot;text-blue-100&quot;">Inventory</a>
                                     <a href="#"
-                                        class="text-indigo-100 rounded-md bg-white bg-opacity-0 px-3 py-2 text-sm font-medium hover:bg-opacity-10"
-                                        x-state-description="undefined: &quot;text-white&quot;, undefined: &quot;text-indigo-100&quot;">Theme</a>
+                                        class="text-blue-100 rounded-md bg-white bg-opacity-0 px-3 py-2 text-sm font-medium hover:bg-opacity-10"
+                                        x-state-description="undefined: &quot;text-white&quot;, undefined: &quot;text-blue-100&quot;">Theme</a>
 
                                 </nav>
                             </div>
@@ -254,12 +254,12 @@
                                 <div class="flex items-center justify-between px-4">
                                     <div>
                                         <img class="h-8 w-auto"
-                                            src="https://tailwindui.com/img/logos/mark.svg?color=indigo&amp;shade=600"
+                                            src="https://tailwindui.com/img/logos/mark.svg?color=blue&amp;shade=600"
                                             alt="Your Company">
                                     </div>
                                     <div class="-mr-2">
                                         <button type="button"
-                                            class="inline-flex items-center justify-center rounded-md bg-white p-2 text-gray-400 hover:bg-gray-100 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500"
+                                            class="inline-flex items-center justify-center rounded-md bg-white p-2 text-gray-400 hover:bg-gray-100 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-blue-500"
                                             @click="toggle">
                                             <span class="sr-only">Close menu</span>
                                             <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
@@ -296,7 +296,7 @@
                                         <div class="truncate text-sm font-medium text-gray-500">tom@example.com</div>
                                     </div>
                                     <button type="button"
-                                        class="ml-auto flex-shrink-0 rounded-full bg-white p-1 text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
+                                        class="ml-auto flex-shrink-0 rounded-full bg-white p-1 text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
                                         <span class="sr-only">View notifications</span>
                                         <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                                             stroke="currentColor" aria-hidden="true">
