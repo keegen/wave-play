@@ -25,4 +25,16 @@ class DashboardController extends Controller
     {
         return view('theme::dashboard.index');
     }
+    public function inventory()
+    {
+        return view('theme::dashboard.inventory');
+    }
+    public function siteinfo()
+    {
+        return view('theme::dashboard.siteinfo');
+    }
+    public function sitetheme()
+    {
+        return view('theme::dashboard.theme');
+    }
 }

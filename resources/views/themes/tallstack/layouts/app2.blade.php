@@ -46,7 +46,7 @@
     @if(isset($seo->description))
         <meta name="description" content="{{ $seo->description }}">
     @endif
-
+    <script src="https://unpkg.com/alpinejs" defer></script>
     <!-- Styles -->
     <link
         href="{{ asset('themes/' . $theme->folder . '/css/app.css') }}"
@@ -161,7 +161,7 @@
                                         placeholder="Search" type="search" name="search">
                                 </div>
                             </div>
-                        </div>-->
+                        </div> -->
 
                         <!-- Menu button -->
                         <div class="absolute right-0 flex-shrink-0 lg:hidden">

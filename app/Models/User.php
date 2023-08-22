@@ -42,4 +42,14 @@ class User extends Authenticatable
     protected $casts = [
         'trial_ends_at' => 'datetime',
     ];
+    
+    public function airtableDetail()
+    {
+        return $this->hasOne(AirtableDetail::class);
+    }
+
+    public function personalSiteDetail()
+    {
+        return $this->hasOne(PersonalSiteDetail::class);
+    }
 }

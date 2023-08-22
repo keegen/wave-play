@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PersonalSiteDetailController;
 
 Route::impersonate();
 
@@ -35,6 +36,9 @@ Route::get('test', '\Wave\Http\Controllers\SubscriptionController@test');
 
 Route::group(['middleware' => 'wave'], function () {
 	Route::get('dashboard', '\Wave\Http\Controllers\DashboardController@index')->name('wave.dashboard');
+	Route::get('inventory', '\Wave\Http\Controllers\DashboardController@inventory')->name('wave.inventory');
+	Route::get('siteinfo', '\Wave\Http\Controllers\DashboardController@siteinfo')->name('wave.siteinfo');
+	Route::get('theme', '\Wave\Http\Controllers\DashboardController@sitetheme')->name('wave.sitetheme');
 });
 
 Route::group(['middleware' => 'auth'], function(){
