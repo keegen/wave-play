@@ -9,13 +9,13 @@ class cars extends Model
 {
     use HasFactory;
 
-    protected $fillable = [
+   /* protected $fillable = [
         'user_id', 'title', 'description', 'price','year', 'vehicle_type','brand','condition'
     ];
 
     public function cars(): BelongsTo
     {
         return $this->belongsTo(related:User::class);
-    }
+    } */
 }
 
