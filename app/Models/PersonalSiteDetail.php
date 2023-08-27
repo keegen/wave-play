@@ -2,10 +2,11 @@
 
 namespace App\Models;
 
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Auth;
-use Voyager\Models\User;
+
 
 
 class PersonalSiteDetail extends Model
@@ -33,9 +34,8 @@ class PersonalSiteDetail extends Model
      */
     public function user()
     {
-        return $this->belongsTo(\App\Models\User::class);
+        return $this->belongsTo(User::class);
     }
-    
     
  
 }

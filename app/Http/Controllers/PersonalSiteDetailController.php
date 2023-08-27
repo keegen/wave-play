@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Auth;
 use App\Models\PersonalSiteDetail;
 use TANIOS\Airtable\Airtable;
+use Illuminate\Support\Collection;
 
 
 
@@ -22,10 +23,13 @@ class PersonalSiteDetailController extends Controller
     public function create()
 {
     $user = Auth::user();
-    $detail = PersonalSiteDetail::where('user_id', $user->id)->firstOrNew();
+
+    $detail = $user->personalSiteDetail()->firstOrNew();
 
     return view('theme::dashboard.siteinfo', compact('detail'));
 }
+
+
 
     /**
      * Store a newly created resource in storage.
@@ -36,8 +40,17 @@ class PersonalSiteDetailController extends Controller
     public function store(Request $request)
 {
     // You might want to add validation rules for these fields
+    $user = Auth::user();
 
-    $siteDetail = new PersonalSiteDetail;
+    // Check if the user already has a detail record
+    $siteDetail = $user->personalSiteDetail;
+
+    if (!$siteDetail) {
+        $siteDetail = new PersonalSiteDetail;
+        $siteDetail->user_id = $user->id;
+    }
+
+    // Set the properties of the PersonalSiteDetail
     $siteDetail->name = $request->name;
     $siteDetail->about = $request->about;
     $siteDetail->facebook_link = $request->facebook_link;
@@ -62,15 +75,16 @@ class PersonalSiteDetailController extends Controller
         $siteDetail->customer_testimonial_photo = $path;
     }
 
-    // Use Voyager's user model for authentication
-    $siteDetail->user_id = Auth::user()->getKey();
-
+    // Save the PersonalSiteDetail
     $siteDetail->save();
-    $user = Auth::user();
 
+    // Associate the PersonalSiteDetail with the user
+    Auth::user()->personalSiteDetail()->associate($siteDetail);
+    Auth::user()->save();
+    
     return redirect()->route('themes/dashboard.siteinfo')->with(['detail' => $siteDetail]);
-
 }
+
 
 public function edit($id)
 {
@@ -126,10 +140,10 @@ public function show($id)
     return view('theme::dashboard.siteinfo', compact('detail', 'user'));
 }
 
+
 public function showlanding($name)
 {
     $personalDealerSite = PersonalSiteDetail::where('name', $name)->first();
-
 
     if (!$personalDealerSite) {
         abort(404, 'Site not found.');
@@ -139,7 +153,10 @@ public function showlanding($name)
     $newVehicles = $this->fetchAirtableData($personalDealerSite->user, 'new');
     $usedVehicles = $this->fetchAirtableData($personalDealerSite->user, 'used');
 
-    return view('/personal_site_detail/dealer_landing', compact('personalDealerSite', 'newVehicles', 'usedVehicles'));
+    // Check if both $newVehicles and $usedVehicles are empty
+    $noVehiclesAvailable = $newVehicles->isEmpty() && $usedVehicles->isEmpty();
+
+    return view('/personal_site_detail/dealer_landing', compact('personalDealerSite', 'newVehicles', 'usedVehicles', 'noVehiclesAvailable'));
 }
 
 
@@ -147,6 +164,11 @@ public function showlanding($name)
 
 public function fetchAirtableData(User $user, $type = 'new')
 {
+    // Check if the user has associated airtable details
+    if (!$user->airtableDetail) {
+        return collect(); // Return an empty collection if airtable details don't exist
+    }
+
     $airtableDetails = $user->airtableDetail;
 
     $baseId = $type === 'new' ? $airtableDetails->new_vehicles_base_id : $airtableDetails->used_vehicles_base_id;
@@ -160,7 +182,13 @@ public function fetchAirtableData(User $user, $type = 'new')
     $request = $airtable->getContent($tableName);
     $vehicles = $request->getResponse();
 
+    // Check if $vehicles is empty and return an empty collection if so
+    if (empty($vehicles)) {
+        return collect(); // Return an empty collection
+    }
+
     return $vehicles;
 }
+
 
 }

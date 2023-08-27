@@ -41,6 +41,7 @@ Route::view('apptemplate', 'theme::apptemplate');
 
 Route::get('themes/{num}', 'App\Http\Controllers\ThemeControler@show');
 Route::get('/siteinfo', 'App\Http\Controllers\PersonalSiteDetailController@create')->name('themes/dashboard.siteinfo');
+Route::get('/siteinfo/create', 'App\Http\Controllers\PersonalSiteDetailController@create')->name('personal_site_detail.create');
 Route::post('/siteinfo', 'App\Http\Controllers\PersonalSiteDetailController@store')->name('personal_site_detail.store');
 Route::get('/siteinfo/{id}', 'App\Http\Controllers\PersonalSiteDetailController@show')->name('themes/dashboard.siteinfo.show');
 

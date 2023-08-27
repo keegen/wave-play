@@ -24,7 +24,8 @@
   }
   ```
 -->
-    <form action="{{ isset($detail) && $detail->id ? route('personal_site_detail.update', $detail->id) : route('personal_site_detail.store') }}" method="post" enctype="multipart/form-data">
+
+<form action="{{ Auth::user()->personalSiteDetail ? route('personal_site_detail.update', Auth::user()->personalSiteDetail->id) : route('personal_site_detail.store') }}" method="post" enctype="multipart/form-data">
 
     @csrf
     @if(isset($detail) && $detail->id)
@@ -47,7 +48,7 @@
                                 class="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 sm:max-w-md">
                                 
                                 <input type="text" name="name" id="name" autocomplete="name"
-                                    class="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6" value="{{ Auth::user()->personalSiteDetail->name }}">
+                                    class="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6" value="@if (Auth::user()->personalSiteDetail){{ Auth::user()->personalSiteDetail->name }}@endif">
                             </div>
                             <p class="mt-3 text-sm leading-6 text-gray-600">This will be used to introduce yourself to
                                 visitors.</p>
@@ -58,7 +59,7 @@
                         <label for="about"
                             class="block text-sm font-medium leading-6 text-gray-900 sm:pt-1.5">About</label>
                         <div class="mt-2 sm:col-span-2 sm:mt-0">
-                            <textarea name="about" rows="3" class="block w-full max-w-2xl rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">{{ Auth::user()->personalSiteDetail->about }}</textarea>
+                            <textarea name="about" rows="3" class="block w-full max-w-2xl rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">@if (Auth::user()->personalSiteDetail){{ Auth::user()->personalSiteDetail->about }}@endif</textarea>
                         </div>
                     </div>
 
@@ -67,7 +68,7 @@
 
                         <div class="mt-2 sm:col-span-2 sm:mt-0">
                             <div class="flex items-center gap-x-3"> 
-                            @if (Auth::user()->personalSiteDetail->photo)
+                            @if (Auth::user()->personalSiteDetail && Auth::user()->personalSiteDetail->photo)
                             <img class="w-8 h-8 rounded-full" src="../{{ Auth::user()->personalSiteDetail->photo }}" alt="{{ Auth::user()->personalSiteDetail->name}} photo">
                             @else
                             <svg class="h-12 w-12 text-gray-300" viewBox="0 0 24 24" fill="currentColor"
@@ -104,7 +105,7 @@
                                     
                                     </div>
                                     <p class="text-xs leading-5 text-gray-600">PNG, JPG, GIF up to 10MB</p>
-                                    @if (Auth::user()->personalSiteDetail->cover_photo)
+                                    @if (Auth::user()->personalSiteDetail && Auth::user()->personalSiteDetail->cover_photo)
                                     <p class="text-xs leading-5 text-indigo-600"><a target="_blank" href="../{{ Auth::user()->personalSiteDetail->cover_photo }}">See Current Cover Photo</a></p>
                                             @else 
 
@@ -130,7 +131,11 @@
                         <label for="facebook_link"
                             class="block text-sm font-medium leading-6 text-gray-900 sm:pt-1.5">Facebook</label>
                         <div class="mt-2 sm:col-span-2 sm:mt-0">
-                            <input type="text" name="facebook_link" id="facebook_link" autocomplete="facebook" value="{{ Auth::user()->personalSiteDetail->facebook_link }}"
+                            <input type="text" name="facebook_link" id="facebook_link" autocomplete="facebook"
+                            @if (Auth::user()->personalSiteDetail && Auth::user()->personalSiteDetail->facebook_link)
+                                value="{{ Auth::user()->personalSiteDetail->facebook_link }}"
+                            @else 
+                            @endif 
                             placeholder="facebook.com/name"
                                 class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6">
                         </div>
@@ -141,7 +146,10 @@
                             class="block text-sm font-medium leading-6 text-gray-900 sm:pt-1.5">Instagram</label>
                         <div class="mt-2 sm:col-span-2 sm:mt-0">
                             <input type="instagram_link" name="instagram_link" id="instagram_link"
-                            value="{{ Auth::user()->personalSiteDetail->instagram_link }}"
+                            @if (Auth::user()->personalSiteDetail && Auth::user()->personalSiteDetail->facebook_link)
+                            value="{{ Auth::user()->personalSiteDetail->instagram_link }}"    
+                            @else 
+                            @endif
                             placeholder="instagram.com/name"
                                 autocomplete="instagram"
                                 class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 pl-2.5 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6">
@@ -154,7 +162,10 @@
                             class="block text-sm font-medium leading-6 text-gray-900 sm:pt-1.5">Twitter</label>
                         <div class="mt-2 sm:col-span-2 sm:mt-0">
                             <input type="twitter_link" name="twitter_link" id="twitter_link" autocomplete="twitter"
-                            value=" {{ Auth::user()->personalSiteDetail->twitter_link }}"
+                            @if (Auth::user()->personalSiteDetail && Auth::user()->personalSiteDetail->twitter_link)
+                            value=" {{ Auth::user()->personalSiteDetail->twitter_link }}"    
+                            @else
+                            @endif                            
                             placeholder="twitter.com/name"
                                 class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6">
                         </div>
@@ -165,7 +176,10 @@
                             class="block text-sm font-medium leading-6 text-gray-900 sm:pt-1.5">Youtube</label>
                         <div class="mt-2 sm:col-span-2 sm:mt-0">
                             <input type="youtube_link" name="youtube_link" id="youtube_link" autocomplete="youtube"
+                            @if (Auth::user()->personalSiteDetail && Auth::user()->personalSiteDetail->youtube_link)
                             value=" {{ Auth::user()->personalSiteDetail->youtube_link }}"
+                            @else
+                            @endif
                             placeholder="youtube.com/name"
                                 class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6">
                         </div>
@@ -197,7 +211,7 @@
                                     </label>
                                 </div>
                                 <p class="text-xs leading-5 text-gray-600">PNG, JPG, GIF up to 10MB</p>
-                                @if (Auth::user()->personalSiteDetail->customer_testimonial_photo)
+                                @if (Auth::user()->personalSiteDetail && Auth::user()->personalSiteDetail->customer_testimonial_photo)
                                 <p class="text-xs leading-5 text-indigo-600"><a target="_blank" href="../{{ Auth::user()->personalSiteDetail->customer_testimonial_photo }}">See Current Testimonial  Photo</a></p>
                                         @else 
 
@@ -213,18 +227,18 @@
                     <label for="testimonial_text"
                         class="block text-sm font-medium leading-6 text-gray-900 sm:pt-1.5">Testimonial Quote</label>
                     <div class="mt-2 sm:col-span-2 sm:mt-0">
-                        <textarea id="testimonial_text" name="testimonial_text" rows="3"
-                            class="block w-full max-w-2xl rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">{{ Auth::user()->personalSiteDetail->customer_testimonial }}</textarea>
+                        <textarea id="testimonial_text" name="customer_testimonial" rows="3"
+                            class="block w-full max-w-2xl rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">@if (Auth::user()->personalSiteDetail){{ Auth::user()->personalSiteDetail->customer_testimonial }}@endif</textarea>
                         </div>
                 </div>
                 <div class="sm:grid sm:grid-cols-3 sm:items-start sm:gap-2 sm:py-4">
                     <label for="testimonial_by"
                         class="block text-sm font-medium leading-6 text-gray-900 sm:pt-1.5">Testimonial By</label>
                     <div class="mt-2 sm:col-span-2 sm:mt-0">
-                        <input type="text" name="testimonial_by" id="testimonial_by" autocomplete="testimonial_by"
+                        <input type="text" name="customer_testimonial_name" id="testimonial_by" autocomplete="testimonial_by"
                             class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6"
-                                        value="{{ Auth::user()->personalSiteDetail->customer_testimonial_name }}"
-                                        placeholder="Enter a customer testimonial name">
+                            value="{{ Auth::user()->personalSiteDetail ? Auth::user()->personalSiteDetail->customer_testimonial_name : 'Enter a customer testimonial name' }}">
+
                     </div>
                 </div>
 
@@ -235,7 +249,6 @@
                     class="inline-flex justify-center rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">{{ isset($detail) && $detail->id ? 'Update' : 'Create' }}</button>
             </div>
     </form>
-
 </div>
 
 

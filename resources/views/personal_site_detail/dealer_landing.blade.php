@@ -12,7 +12,7 @@
     <meta name="robots" content="index,follow">
     <meta name="googlebot" content="index,follow">
 
-    <meta name="description" content="This is a PersonalDealer.Site for {{ auth()->user()->name }}">
+    <meta name="description" content="This is a PersonalDealer.Site for {{ $personalDealerSite->name }}">
     <script src="https://unpkg.com/alpinejs" defer></script>
     <link href="{{ asset('themes/' . $theme->folder . '/css/app.css') }}" rel="stylesheet">
 
@@ -100,13 +100,16 @@
 
 <!-- product loop -->
 <div class="bg-white">
-    <div class="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">
+  <div class="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">
       <div class="md:flex md:items-center md:justify-between">
-        <h2 class="text-2xl font-bold tracking-tight text-gray-900">Browse Inventory</h2>
+          <h2 class="text-2xl font-bold tracking-tight text-gray-900">Browse Inventory</h2>
       </div>
-  
-      <div class="mt-6 grid grid-cols-2 gap-x-4 gap-y-10 sm:gap-x-6 md:grid-cols-4 md:gap-y-0 lg:gap-x-8">
-        @foreach($newVehicles['records'] as $vehicle)
+
+      @if ($newVehicles->isEmpty() && $usedVehicles->isEmpty())
+          <p class="mt-1 text-sm font-medium text-gray-900">Sorry, there are no vehicles available at the moment.</p>
+      @else
+          <div class="mt-6 grid grid-cols-2 gap-x-4 gap-y-10 sm:gap-x-6 md:grid-cols-4 md:gap-y-0 lg:gap-x-8">
+              @foreach($newVehicles['records'] as $vehicle)
         <div class="group relative">
           <div class="w-full overflow-hidden bg-gray-200 group-hover:opacity-75 mt-10">
             <img src="{{ $vehicle->fields->{'Image'} }}" alt="Hand stitched, orange leather long wallet." class="h-full w-full object-cover object-center">
@@ -117,10 +120,11 @@
           <p class="mt-1 text-sm font-medium text-gray-900">{{ $vehicle->fields->{'Color'} }}</p>
           <p class="mt-1 text-sm text-gray-500">Stock Number: {{ $vehicle->fields->{'Stock'} }}</p>
           <p class="mt-1 text-sm text-gray-500">MSRP: {{ $vehicle->fields->{'MSRP'} }}</p>
-      </div>
+        </div>
       @endforeach
-
-
+    </div>
+      @endif
+  </div>
         
         <!-- More products... -->
       </div>
