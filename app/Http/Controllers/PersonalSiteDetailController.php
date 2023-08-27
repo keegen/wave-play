@@ -22,11 +22,10 @@ class PersonalSiteDetailController extends Controller
     public function create()
 {
     $user = Auth::user();
-    $detail = PersonalSiteDetail::where('user_id', $user->id)->first();
+    $detail = PersonalSiteDetail::where('user_id', $user->id)->firstOrNew();
 
     return view('theme::dashboard.siteinfo', compact('detail'));
 }
-
 
     /**
      * Store a newly created resource in storage.
