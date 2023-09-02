@@ -158,7 +158,7 @@
                   <option value="5pm - 7:30pm" class="form-option mt-1 block w-full">5pm - 7:30pm</option>
                 </select>
               <input type="hidden" name="stock_number" value="{{ $vehicle->fields->{'Stock'} }}">
-
+              <input type="hidden" name="personal_dealer_site_id" value="{{ $personalDealerSite->id }}">
             </div>
             <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
                 Submit

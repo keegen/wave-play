@@ -13,6 +13,10 @@ class Lead extends Model
     {
         return $this->belongsTo(User::class);
     }
+    public function personalDealerSite()
+    {
+        return $this->belongsTo(PersonalDealerSite::class);
+    }
 
     protected $fillable = [
         'name', 'email', 'number', 'contact_preference', 'contact_time', 'stock_number',

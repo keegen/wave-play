@@ -14,6 +14,7 @@ use App\Models\Lead;
 
 
 
+
 class PersonalSiteDetailController extends Controller
 {
     /**
@@ -221,9 +222,11 @@ public function fetchAirtableData(User $user, $type = 'new')
     return $vehicles;
 }
 
+
 public function storeLead(Request $request)
 {
-    Log::info($request->all());
+    // Log the form data before validation
+    Log::info('Form Data:', $request->all());
 
     // Validate the form data
     $request->validate([
@@ -233,21 +236,11 @@ public function storeLead(Request $request)
         'contact_preference' => 'required|string|max:255',
         'contact_time' => 'required|string|max:255',
         'stock_number' => 'required|string|max:255',
+        'personal_dealer_site_id' => 'required|integer', // Add this validation rule
     ]);
 
-    $user = auth()->user();
-
-    Log::info('User:', $user->toArray());
-
-    $personalDealerSite = $user->personalDealerSite;
-
-    Log::info('PersonalDealerSite:', $personalDealerSite->toArray());
-
-    // Check if the PersonalDealerSite exists
-    if (!$personalDealerSite) {
-        // Handle the case where there's no associated site
-        return redirect()->back()->with('error', 'No PersonalDealerSite found.');
-    }
+    // Log the form data after validation
+    Log::info('Validated Data:', $request->all());
 
     // Create a new Lead instance and populate it with form data
     $lead = new Lead([
@@ -259,11 +252,18 @@ public function storeLead(Request $request)
         'stock_number' => $request->input('stock_number'),
     ]);
 
-    // Associate the lead with the PersonalDealerSite
-    $personalDealerSite->leads()->save($lead);
+    // Log the Lead data before saving
+    Log::info('Lead Data:', $lead->toArray());
+
+    // Associate the lead with the specified PersonalDealerSite
+    $lead->personal_dealer_site_id = $request->input('personal_dealer_site_id');
+    $lead->save();
+
     // You can redirect back with a success message or perform other actions
     return redirect()->back()->with('success', 'Lead submitted successfully');
 }
+
+
 
 
 
