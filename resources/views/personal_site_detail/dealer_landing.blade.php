@@ -14,6 +14,18 @@
 
     <meta name="description" content="This is a PersonalDealer.Site for {{ $personalDealerSite->name }}">
     <script src="https://unpkg.com/alpinejs" defer></script>
+    <!-- resources/views/landing.blade.php -->
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+      const interestButton = document.getElementById('interestButton');
+      const interestForm = document.getElementById('interestForm');
+
+      interestButton.addEventListener('click', function () {
+          interestForm.classList.toggle('hidden');
+      });
+  });
+</script>
+
     <link href="{{ asset('themes/' . $theme->folder . '/css/app.css') }}" rel="stylesheet">
 
     @livewireStyles
@@ -105,7 +117,7 @@
           <h2 class="text-2xl font-bold tracking-tight text-gray-900">Browse Inventory</h2>
       </div>
 
-      @if ($newVehicles->isEmpty() && $usedVehicles->isEmpty())
+      @if (empty($newVehicles['records']) && empty($usedVehicles['records']))
           <p class="mt-1 text-sm font-medium text-gray-900">Sorry, there are no vehicles available at the moment.</p>
       @else
           <div class="mt-6 grid grid-cols-2 gap-x-4 gap-y-10 sm:gap-x-6 md:grid-cols-4 md:gap-y-0 lg:gap-x-8">
@@ -119,8 +131,45 @@
           </h3>
           <p class="mt-1 text-sm font-medium text-gray-900">{{ $vehicle->fields->{'Color'} }}</p>
           <p class="mt-1 text-sm text-gray-500">Stock Number: {{ $vehicle->fields->{'Stock'} }}</p>
-          <p class="mt-1 text-sm text-gray-500">MSRP: {{ $vehicle->fields->{'MSRP'} }}</p>
+          <p class="mt-1 text-sm text-gray-500">MSRP: {{ $vehicle->fields->MSRP ?? 'N/A' }}</p>
+          
+          <!-- Form Modal -->
+          <button id="interestButton" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+            I'm Interested
+        </button>
+        <form action="{{ route('store-lead') }}" method="POST" id="interestForm" class="hidden">
+            @csrf
+            <div class="mb-4">
+                <label for="name" class="block text-gray-700 font-medium">Name</label>
+                <input type="text" id="name" name="name" class="form-input mt-1 block w-full" placeholder="Your Name" required>
+                <label for="name" class="block text-gray-700 font-medium">Email</label>
+                <input type="text" id="email" name="email" class="form-input mt-1 block w-full" placeholder="Your Email" required>
+                <label for="name" class="block text-gray-700 font-medium">Phone Number</label>
+                <input type="text" id="number" name="number" class="form-input mt-1 block w-full" placeholder="Your Phone Number" required>
+                <label for="contact_preference" class="block text-gray-700 font-medium">Contact Preference</label>
+                <select id="contact_preference" name="contact_preference" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6">
+                  <option value="phone">Phone</option>
+                  <option value="email">Email</option>
+                </select>
+                <label for="contact_time" class="block text-gray-700 font-medium">Preferred Contact Time:</label>
+                <select id="contact_time" name="contact_time" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6">
+                  <option value="8am - 12pm" class="form-option mt-1 block w-full">8am - 12pm</option>
+                  <option value="12pm - 5pm" class="form-option mt-1 block w-full">12pm - 5pm</option>
+                  <option value="5pm - 7:30pm" class="form-option mt-1 block w-full">5pm - 7:30pm</option>
+                </select>
+              <input type="hidden" name="stock_number" value="{{ $vehicle->fields->{'Stock'} }}">
+
+            </div>
+            <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                Submit
+            </button>
+        </form>
+       
+
         </div>
+        
+        
+
       @endforeach
     </div>
       @endif

@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\PersonalSiteDetail;
 use TANIOS\Airtable\Airtable;
 use Illuminate\Support\Collection;
+use App\Models\Lead;
 
 
 
@@ -153,11 +154,41 @@ public function showlanding($name)
     $newVehicles = $this->fetchAirtableData($personalDealerSite->user, 'new');
     $usedVehicles = $this->fetchAirtableData($personalDealerSite->user, 'used');
 
-    // Check if both $newVehicles and $usedVehicles are empty
-    $noVehiclesAvailable = $newVehicles->isEmpty() && $usedVehicles->isEmpty();
+    // Check if there are no new vehicles available
+    $noNewVehiclesAvailable = empty($newVehicles['records']);
+    
+    // Check if there are no used vehicles available
+    $noUsedVehiclesAvailable = empty($usedVehicles['records']);
 
-    return view('/personal_site_detail/dealer_landing', compact('personalDealerSite', 'newVehicles', 'usedVehicles', 'noVehiclesAvailable'));
+    return view('/personal_site_detail/dealer_landing', compact('personalDealerSite', 'newVehicles', 'usedVehicles', 'noNewVehiclesAvailable', 'noUsedVehiclesAvailable'));
 }
+
+
+
+
+
+public function inventory(Request $request)
+{
+    $user = auth()->user();
+    $personalSiteDetail = $user->personalSiteDetail;
+
+
+    // Validate the request data here if needed
+    $request->validate([
+        'new_inventory_link' => 'nullable|url',
+        'used_inventory_link' => 'nullable|url',
+    ]);
+    
+
+    // Update the PersonalSiteDetail model and save it to the database
+    $personalSiteDetail->update([
+        'new_vehicle_link' => $request->input('new_inventory_link'),
+        'used_vehicle_link' => $request->input('used_inventory_link'),
+    ]);
+
+    return view('themes.tallstack.dashboard.inventory', compact('personalSiteDetail'));
+}
+
 
 
 
@@ -166,7 +197,7 @@ public function fetchAirtableData(User $user, $type = 'new')
 {
     // Check if the user has associated airtable details
     if (!$user->airtableDetail) {
-        return collect(); // Return an empty collection if airtable details don't exist
+        return ['records' => []]; // Return an empty array if airtable details don't exist
     }
 
     $airtableDetails = $user->airtableDetail;
@@ -182,13 +213,58 @@ public function fetchAirtableData(User $user, $type = 'new')
     $request = $airtable->getContent($tableName);
     $vehicles = $request->getResponse();
 
-    // Check if $vehicles is empty and return an empty collection if so
+    // Check if $vehicles is empty and return an empty array if so
     if (empty($vehicles)) {
-        return collect(); // Return an empty collection
+        return ['records' => []]; // Return an empty array
     }
 
     return $vehicles;
 }
+
+public function storeLead(Request $request)
+{
+    Log::info($request->all());
+
+    // Validate the form data
+    $request->validate([
+        'name' => 'required|string|max:255',
+        'number' => 'required|string|max:255',
+        'email' => 'required|email|max:255',
+        'contact_preference' => 'required|string|max:255',
+        'contact_time' => 'required|string|max:255',
+        'stock_number' => 'required|string|max:255',
+    ]);
+
+    $user = auth()->user();
+
+    Log::info('User:', $user->toArray());
+
+    $personalDealerSite = $user->personalDealerSite;
+
+    Log::info('PersonalDealerSite:', $personalDealerSite->toArray());
+
+    // Check if the PersonalDealerSite exists
+    if (!$personalDealerSite) {
+        // Handle the case where there's no associated site
+        return redirect()->back()->with('error', 'No PersonalDealerSite found.');
+    }
+
+    // Create a new Lead instance and populate it with form data
+    $lead = new Lead([
+        'name' => $request->input('name'),
+        'email' => $request->input('email'),
+        'number' => $request->input('number'),
+        'contact_preference' => $request->input('contact_preference'),
+        'contact_time' => $request->input('contact_time'),
+        'stock_number' => $request->input('stock_number'),
+    ]);
+
+    // Associate the lead with the PersonalDealerSite
+    $personalDealerSite->leads()->save($lead);
+    // You can redirect back with a success message or perform other actions
+    return redirect()->back()->with('success', 'Lead submitted successfully');
+}
+
 
 
 }

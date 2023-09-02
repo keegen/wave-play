@@ -6,6 +6,7 @@ use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Lead;
 
 
 
@@ -27,7 +28,9 @@ class PersonalSiteDetail extends Model
         'youtube_link',
         'customer_testimonial',
         'customer_testimonial_photo',
-        'customer_testimonial_name'
+        'customer_testimonial_name',
+        'new_vehicle_link',
+        'used_vehicle_link',
     ];
     /**
      * Get the user that owns the personal site detail.
@@ -36,6 +39,9 @@ class PersonalSiteDetail extends Model
     {
         return $this->belongsTo(User::class);
     }
-    
+    public function leads()
+{
+    return $this->hasMany(Lead::class);
+}
  
 }
