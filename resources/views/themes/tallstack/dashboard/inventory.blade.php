@@ -13,7 +13,7 @@
             process usually takes 3-4 days for the initial sync depending on volume.</p>
     </div>
 
-    <form action="{{ route('personal_site_detail.inventory') }}" method="POST">
+    <form action="{{ route('personal_site_detail.storeInventory') }}" method="POST">
       @csrf
         <div class="space-y-12 mt-16">
             <div class="grid grid-cols-1 gap-x-8 gap-y-10 border-b border-gray-900/10 pb-12 md:grid-cols-3">

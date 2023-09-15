@@ -17,13 +17,22 @@
     <!-- resources/views/landing.blade.php -->
 <script>
   document.addEventListener('DOMContentLoaded', function () {
-      const interestButton = document.getElementById('interestButton');
-      const interestForm = document.getElementById('interestForm');
+    const interestButtons = document.querySelectorAll('.interestButton');
 
-      interestButton.addEventListener('click', function () {
-          interestForm.classList.toggle('hidden');
-      });
-  });
+    interestButtons.forEach((button) => {
+        button.addEventListener('click', function() {
+            const modalId = 'modal-' + button.getAttribute('data-modal');
+            const modal = document.getElementById(modalId);
+            modal.classList.remove('hidden');
+            
+            // Attach close event to each modal's close button
+            const closeModal = modal.querySelector('.closeModal');
+            closeModal.addEventListener('click', function() {
+                modal.classList.add('hidden');
+            });
+        });
+    });
+});
 </script>
 
     <link href="{{ asset('themes/' . $theme->folder . '/css/app.css') }}" rel="stylesheet">
@@ -114,75 +123,58 @@
 <div class="bg-white">
   <div class="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">
       <div class="md:flex md:items-center md:justify-between">
-          <h2 class="text-2xl font-bold tracking-tight text-gray-900">Browse Inventory</h2>
+          <h2 id="inventory" class="text-2xl font-bold tracking-tight text-gray-900 mb-4">Inventory</h2>
       </div>
 
       @if (empty($newVehicles['records']) && empty($usedVehicles['records']))
           <p class="mt-1 text-sm font-medium text-gray-900">Sorry, there are no vehicles available at the moment.</p>
       @else
-          <div class="mt-6 grid grid-cols-2 gap-x-4 gap-y-10 sm:gap-x-6 md:grid-cols-4 md:gap-y-0 lg:gap-x-8">
-              @foreach($newVehicles['records'] as $vehicle)
-        <div class="group relative">
-          <div class="w-full overflow-hidden bg-gray-200 group-hover:opacity-75 mt-10">
-            <img src="{{ $vehicle->fields->{'Image'} }}" alt="Hand stitched, orange leather long wallet." class="h-full w-full object-cover object-center">
+      <livewire:vehicle-search :personalDealerSite="$personalDealerSite" />
+
+          <!-- Modals (outside the grid) -->
+          @foreach($newVehicles['records'] as $vehicle)
+          <div class="fixed inset-0 flex items-center justify-center z-50 hidden bg-black bg-opacity-50" id="modal-{{ $vehicle->fields->{'Stock'} }}">
+              <div class="bg-white p-6 rounded-lg w-3/4 max-w-xl relative">
+                  <!-- Close Button -->
+                  <span class="closeModal absolute top-4 right-4 cursor-pointer text-xl">&times;</span>
+                  <!-- Modal Content (The Form) -->
+                  <form action="{{ route('store-lead') }}" method="POST">
+                      @csrf
+                      <div class="mb-4">
+                        <h3 class="mb-4 text-xl font-medium text-gray-900 dark:text-white">I'm intested in the {{ $vehicle->fields->{'Vehicle'} }}.</h3>
+                          <label for="name" class="block text-gray-700 font-medium mt-2">Name</label>
+                          <input type="text" id="name" name="name" class="form-input mt-1 block w-full" placeholder="Your Name" required>
+                          <label for="name" class="block text-gray-700 font-medium mt-2">Email</label>
+                          <input type="text" id="email" name="email" class="form-input mt-1 block w-full" placeholder="Your Email" required>
+                          <label for="name" class="block text-gray-700 font-medium mt-2">Phone Number</label>
+                          <input type="text" id="number" name="number" class="form-input mt-1 block w-full" placeholder="Your Phone Number" required>
+                          <label for="contact_preference" class="block text-gray-700 font-medium mt-2">Contact Preference</label>
+                          <select id="contact_preference" name="contact_preference" class="form-input mt-1 block w-full">
+                              <option value="phone">Phone</option>
+                              <option value="email">Email</option>
+                          </select>
+                          <label for="contact_time" class="block text-gray-700 font-medium mt-2">Preferred Contact Time:</label>
+                          <select id="contact_time" name="contact_time" class="form-input mt-1 block w-full">
+                              <option value="8am - 12pm" class="form-option mt-1 block w-full">8am - 12pm</option>
+                              <option value="12pm - 5pm" class="form-option mt-1 block w-full">12pm - 5pm</option>
+                              <option value="5pm - 7:30pm" class="form-option mt-1 block w-full">5pm - 7:30pm</option>
+                          </select>
+                          <input type="hidden" name="stock_number" value="{{ $vehicle->fields->{'Stock'} }}">
+                          <input type="hidden" name="personal_dealer_site_id" value="{{ $personalDealerSite->id }}">
+                          <button type="submit" class="px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 mt-4">
+                              Submit
+                          </button>
+                      </div>
+                  </form>
+              </div>
           </div>
-          <h3 class="mt-4 font-medium text-sm text-gray-700">
-              {{ $vehicle->fields->{'Vehicle'} }}
-          </h3>
-          <p class="mt-1 text-sm font-medium text-gray-900">{{ $vehicle->fields->{'Color'} }}</p>
-          <p class="mt-1 text-sm text-gray-500">Stock Number: {{ $vehicle->fields->{'Stock'} }}</p>
-          <p class="mt-1 text-sm text-gray-500">MSRP: {{ $vehicle->fields->MSRP ?? 'N/A' }}</p>
-          
-          <!-- Form Modal -->
-          <button id="interestButton" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-            I'm Interested
-        </button>
-        <form action="{{ route('store-lead') }}" method="POST" id="interestForm" class="hidden">
-            @csrf
-            <div class="mb-4">
-                <label for="name" class="block text-gray-700 font-medium">Name</label>
-                <input type="text" id="name" name="name" class="form-input mt-1 block w-full" placeholder="Your Name" required>
-                <label for="name" class="block text-gray-700 font-medium">Email</label>
-                <input type="text" id="email" name="email" class="form-input mt-1 block w-full" placeholder="Your Email" required>
-                <label for="name" class="block text-gray-700 font-medium">Phone Number</label>
-                <input type="text" id="number" name="number" class="form-input mt-1 block w-full" placeholder="Your Phone Number" required>
-                <label for="contact_preference" class="block text-gray-700 font-medium">Contact Preference</label>
-                <select id="contact_preference" name="contact_preference" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6">
-                  <option value="phone">Phone</option>
-                  <option value="email">Email</option>
-                </select>
-                <label for="contact_time" class="block text-gray-700 font-medium">Preferred Contact Time:</label>
-                <select id="contact_time" name="contact_time" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6">
-                  <option value="8am - 12pm" class="form-option mt-1 block w-full">8am - 12pm</option>
-                  <option value="12pm - 5pm" class="form-option mt-1 block w-full">12pm - 5pm</option>
-                  <option value="5pm - 7:30pm" class="form-option mt-1 block w-full">5pm - 7:30pm</option>
-                </select>
-              <input type="hidden" name="stock_number" value="{{ $vehicle->fields->{'Stock'} }}">
-              <input type="hidden" name="personal_dealer_site_id" value="{{ $personalDealerSite->id }}">
-            </div>
-            <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-                Submit
-            </button>
-        </form>
-       
-
-        </div>
-        
-        
-
-      @endforeach
-    </div>
+          @endforeach
       @endif
   </div>
+</div>
+
         
         <!-- More products... -->
-      </div>
-  
-      <div class="mt-8 text-sm md:hidden">
-        <a href="#" class="font-medium text-indigo-600 hover:text-indigo-500">
-          Shop the collection
-          <span aria-hidden="true"> &rarr;</span>
-        </a>
       </div>
     </div>
   </div>
@@ -211,54 +203,28 @@
       <div class="mx-auto max-w-xl lg:mx-0 lg:max-w-lg">
         <h2 class="text-3xl font-bold tracking-tight text-gray-900" id="contact">Contact</h2>
         <p class="mt-2 text-lg leading-8 text-gray-600">I'm looking forward to helping you.</p>
-        <form action="#" method="POST" class="mt-16">
-          <div class="grid grid-cols-1 gap-x-8 gap-y-6 sm:grid-cols-2">
-            <div>
-              <label for="first-name" class="block text-sm font-semibold leading-6 text-gray-900">First name</label>
-              <div class="mt-2.5">
-                <input type="text" name="first-name" id="first-name" autocomplete="given-name" class="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
-              </div>
-            </div>
-            <div>
-              <label for="last-name" class="block text-sm font-semibold leading-6 text-gray-900">Last name</label>
-              <div class="mt-2.5">
-                <input type="text" name="last-name" id="last-name" autocomplete="family-name" class="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
-              </div>
-            </div>
-            <div class="sm:col-span-2">
-              <label for="email" class="block text-sm font-semibold leading-6 text-gray-900">Email</label>
-              <div class="mt-2.5">
-                <input id="email" name="email" type="email" autocomplete="email" class="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
-              </div>
-            </div>
-            <div class="sm:col-span-2">
-              <div class="flex justify-between text-sm leading-6">
-                <label for="phone" class="block font-semibold text-gray-900">Phone</label>
-                <p id="phone-description" class="text-gray-400">Optional</p>
-              </div>
-              <div class="mt-2.5">
-                <input type="tel" name="phone" id="phone" autocomplete="tel" aria-describedby="phone-description" class="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
-              </div>
-            </div>
-            <div class="sm:col-span-2">
-              <div class="flex justify-between text-sm leading-6">
-                <label for="message" class="block text-sm font-semibold leading-6 text-gray-900">How can I help you?</label>
-                <p id="message-description" class="text-gray-400">Max 500 characters</p>
-              </div>
-              <div class="mt-2.5">
-                <textarea id="message" name="message" rows="4" aria-describedby="message-description" class="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"></textarea>
-              </div>
-            </div>
-          </div>
-          <div class="mt-10 flex justify-end border-t border-gray-900/10 pt-8">
-            <button type="submit" class="rounded-md bg-indigo-600 px-3.5 py-2.5 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Send message</button>
-          </div>
-        </form>
+        @livewire('contact-form', ['dealerId' => $personalDealerSite->id])
       </div>
     </div>
   </div>
 </div>
-
+<footer class="bg-white rounded-lg shadow m-4 dark:bg-gray-800">
+  <div class="w-full mx-auto max-w-screen-xl p-4 md:flex md:items-center md:justify-between">
+    <span class="text-sm text-gray-500 sm:text-center dark:text-gray-400">© 2023 <a href="https://personaldealer.site" class="hover:underline">PersonalDealerSite™</a>. All Rights Reserved.
+  </span>
+  <ul class="flex flex-wrap items-center mt-3 text-sm font-medium text-gray-500 dark:text-gray-400 sm:mt-0">
+      <li>
+          <a href="#" class="mr-4 hover:underline md:mr-6 ">About</a>
+      </li>
+      <li>
+          <a href="#" class="mr-4 hover:underline md:mr-6">Privacy Policy</a>
+      </li>
+      <li>
+          <a href="#" class="hover:underline">Get Your Own</a>
+      </li>
+  </ul>
+  </div>
+</footer>
  
 
   @livewireScripts

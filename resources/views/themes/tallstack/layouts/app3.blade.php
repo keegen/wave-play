@@ -45,12 +45,39 @@
     @if(isset($seo->description))
         <meta name="description" content="{{ $seo->description }}">
     @endif
-    <script src="https://unpkg.com/alpinejs" defer></script>
-    <!-- Styles -->
+    <script src="https://unpkg.com/alpinejs" defer></script>   
     <link
         href="{{ asset('themes/' . $theme->folder . '/css/app.css') }}"
         rel="stylesheet">
+        
     @livewireStyles
+    <style>
+        /* Styling for when the radio button is checked */
+        .radio-group input[type="radio"]:checked + label {
+            background-color: #411463; 
+            color: white; /* Tailwind's text-white color */
+        }
+    
+        /* Styling for hover state */
+        .radio-group label:hover {
+            background-color: #5e208e; /* Tailwind's bg-blue-500 color */
+            color: white; /* Tailwind's text-white color */
+        }
+    
+        /* Remove scrollbars */
+        .radio-group.no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+    
+        .radio-group.no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+    
+    
+    
+    
 </head>
 
 <body data-new-gr-c-s-check-loaded="14.1110.0" data-gr-ext-installed="">

@@ -168,27 +168,37 @@ public function showlanding($name)
 
 
 
-public function inventory(Request $request)
+public function showInventory()
+{
+    $personalSiteDetail = auth()->user()->personalSiteDetail;
+    return view('themes.tallstack.dashboard.inventory', compact('personalSiteDetail'));
+}
+
+public function storeInventory(Request $request)
 {
     $user = auth()->user();
-    $personalSiteDetail = $user->personalSiteDetail;
 
+    // Check if the user has a personalSiteDetail
+    if (!$user->personalSiteDetail) {
+        // Handle this situation - maybe create a new PersonalSiteDetail or return an error
+        return redirect()->back()->with('error', 'No Personal Site Details found.');
+    }
 
-    // Validate the request data here if needed
+    // Validate the request data here
     $request->validate([
         'new_inventory_link' => 'nullable|url',
         'used_inventory_link' => 'nullable|url',
     ]);
-    
 
     // Update the PersonalSiteDetail model and save it to the database
-    $personalSiteDetail->update([
+    $user->personalSiteDetail->update([
         'new_vehicle_link' => $request->input('new_inventory_link'),
         'used_vehicle_link' => $request->input('used_inventory_link'),
     ]);
 
-    return view('themes.tallstack.dashboard.inventory', compact('personalSiteDetail'));
+    return redirect()->route('personal_site_detail.showInventory')->with('success', 'Inventory links updated successfully.');
 }
+
 
 
 

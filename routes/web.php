@@ -40,9 +40,8 @@ Route::view('privacy', 'theme::privacy');
 
 Route::view('apptemplate', 'theme::apptemplate');
 
-Route::get('/inventory', 'App\Http\Controllers\PersonalSiteDetailController@inventory')->name('personal_site_detail.inventory');
-
-Route::post('/inventory', 'App\Http\Controllers\PersonalSiteDetailController@inventory')->name('personal_site_detail.inventory');
+Route::get('/inventory', 'App\Http\Controllers\PersonalSiteDetailController@showInventory')->name('personal_site_detail.showInventory');
+Route::post('/inventory', 'App\Http\Controllers\PersonalSiteDetailController@storeInventory')->name('personal_site_detail.storeInventory');
 
 
 Route::get('themes/{num}', 'App\Http\Controllers\ThemeControler@show');
@@ -54,7 +53,7 @@ Route::get('/siteinfo/{id}', 'App\Http\Controllers\PersonalSiteDetailController@
 Route::put('/siteinfo/{id}', 'App\Http\Controllers\PersonalSiteDetailController@update')->name('personal_site_detail.update');
 
 
-
+Route::get('dashboard', 'App\Http\Controllers\DashboardController@dashboard')->name('dashboard');
 Route::get('/{name}', 'App\Http\Controllers\PersonalSiteDetailController@showlanding')->name('showlanding');
 
 
@@ -62,5 +61,10 @@ Route::get('/airtable/form', [AirtableController::class, 'showForm'])->name('air
 Route::post('/airtable/store', [AirtableController::class, 'store'])->name('airtable.store');
 
 Route::post('/store-lead', 'App\Http\Controllers\PersonalSiteDetailController@storeLead')->name('store-lead');
+
+Route::post('/lead/{lead}/update', 'App\Http\Controllers\LeadController@updateLead')->name('updateLead');
+
+Route::get('/lead/{lead}/details', 'App\Http\Controllers\LeadController@show')->name('lead.details');
+Route::post('/lead/{lead}/details', 'App\Http\Controllers\LeadController@update')->name('lead.update');
 
 
