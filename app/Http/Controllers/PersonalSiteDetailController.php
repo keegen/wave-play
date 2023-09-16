@@ -51,7 +51,6 @@ class PersonalSiteDetailController extends Controller
 
     if (!$siteDetail) {
         $siteDetail = new PersonalSiteDetail;
-        $siteDetail->user_id = $user->id;
     }
 
     // Set the properties of the PersonalSiteDetail
@@ -79,15 +78,13 @@ class PersonalSiteDetailController extends Controller
         $siteDetail->customer_testimonial_photo = $path;
     }
 
-    // Save the PersonalSiteDetail
-    $siteDetail->save();
+    // Save the PersonalSiteDetail through the relationship. 
+    // This also takes care of setting the user_id on the PersonalSiteDetail
+    $user->personalSiteDetail()->save($siteDetail);
 
-    // Associate the PersonalSiteDetail with the user
-    Auth::user()->personalSiteDetail()->associate($siteDetail);
-    Auth::user()->save();
-    
     return redirect()->route('themes/dashboard.siteinfo')->with(['detail' => $siteDetail]);
 }
+
 
 
 public function edit($id)
