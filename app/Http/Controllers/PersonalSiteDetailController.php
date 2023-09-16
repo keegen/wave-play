@@ -11,6 +11,8 @@ use App\Models\PersonalSiteDetail;
 use TANIOS\Airtable\Airtable;
 use Illuminate\Support\Collection;
 use App\Models\Lead;
+use App\Models\UserThemePreference;
+use App\Models\PersonalDealerTheme;
 
 
 
@@ -272,9 +274,5 @@ public function storeLead(Request $request)
     // You can redirect back with a success message or perform other actions
     return redirect()->back()->with('success', 'Lead submitted successfully');
 }
-
-
-
-
 
 }

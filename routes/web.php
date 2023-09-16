@@ -18,6 +18,7 @@ use App\Http\Controllers\ThemeControler;
 use App\Http\Controllers\PersonalSiteDetailController;
 use App\Http\Controllers\AirtableController;
 use App\Http\Controllers\LeadController;
+use App\Http\Controllers\UserThemeController;
 
 // Authentication routes
 Auth::routes();
@@ -68,3 +69,8 @@ Route::get('/lead/{lead}/details', 'App\Http\Controllers\LeadController@show')->
 Route::post('/lead/{lead}/details', 'App\Http\Controllers\LeadController@update')->name('lead.update');
 
 
+// Display themes for selection
+Route::get('/theme/select', 'App\Http\Controllers\UserThemeController@selectTheme')->name('theme.select');
+
+// Store user's theme selection
+Route::post('/theme/store', 'App\Http\Controllers\UserThemeController@storeTheme')->name('theme.store');

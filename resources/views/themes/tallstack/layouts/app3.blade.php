@@ -47,7 +47,7 @@
     @endif
     <script src="https://unpkg.com/alpinejs" defer></script>   
     <link
-        href="{{ asset('themes/' . $theme->folder . '/css/app.css') }}"
+        href="{{ asset('themes/tallstack/css/app.css') }}"
         rel="stylesheet">
         
     @livewireStyles
@@ -180,7 +180,7 @@
                                                     </a>
                                                 </li>
                                                 <li>
-                                                    <a href="/theme"
+                                                    <a href="/theme/select"
                                                         class="text-gray-700 hover:text-indigo-600 hover:bg-gray-50 group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold"
                                                         x-state-description="undefined: &quot;bg-gray-50 text-indigo-600&quot;, undefined: &quot;text-gray-700 hover:text-indigo-600 hover:bg-gray-50&quot;">
                                                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
@@ -264,7 +264,7 @@
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="/theme"
+                                            <a href="/theme/select"
                                                 class="text-gray-700 hover:text-indigo-600 hover:bg-gray-50 group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold"
                                                 x-state-description="undefined: &quot;bg-gray-50 text-indigo-600&quot;, undefined: &quot;text-gray-700 hover:text-indigo-600 hover:bg-gray-50&quot;">
                                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
