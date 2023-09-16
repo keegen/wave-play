@@ -17,7 +17,10 @@ return new class extends Migration
         if (!Schema::hasColumn('leads', 'contact_preference')) {
             $table->string('contact_preference')->nullable();
         }
-        $table->string('contact_time');
+        if (!Schema::hasColumn('leads', 'contact_time')) {
+            $table->string('contact_time');
+        }
+        
     });
 }
 
@@ -27,7 +30,15 @@ return new class extends Migration
      * @return void
      */
     public function down()
-    {
-        //
-    }
+{
+    Schema::table('leads', function (Blueprint $table) {
+        if (Schema::hasColumn('leads', 'contact_preference')) {
+            $table->dropColumn('contact_preference');
+        }
+        if (Schema::hasColumn('leads', 'contact_time')) {
+            $table->dropColumn('contact_time');
+        }
+    });
+}
+
 };
