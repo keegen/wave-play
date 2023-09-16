@@ -14,7 +14,9 @@ return new class extends Migration
     public function up()
 {
     Schema::table('leads', function (Blueprint $table) {
-        $table->string('contact_preference')->nullable();
+        if (!Schema::hasColumn('leads', 'contact_preference')) {
+            $table->string('contact_preference')->nullable();
+        }
         $table->string('contact_time');
     });
 }
