@@ -45,7 +45,7 @@
 <div class="relative isolate overflow-hidden bg-white">
     <div class="mx-auto max-w-7xl px-6 pb-24 pt-10 sm:pb-32 lg:flex lg:px-8 lg:py-40">
       <div class="mx-auto max-w-2xl lg:mx-0 lg:max-w-xl lg:flex-shrink-0 lg:pt-8">
-            <img class="inline-block h-20 w-20 rounded-full" src="../{{ $personalDealerSite->photo }}" alt="">
+            <img class="inline-block h-20 w-20 rounded-full" src="/{{ $personalDealerSite->photo }}" alt="">
         <h1 class="mt-10 text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">Hi! I'm {{ $personalDealerSite->name }}!</h1>
         <p class="mt-6 text-lg leading-8 text-gray-600">{{ $personalDealerSite->about }}</p>
         <div class="mt-10 flex items-center gap-x-6">
@@ -84,7 +84,7 @@
       <div class="mx-auto mt-16 flex max-w-2xl sm:mt-24 lg:ml-10 lg:mr-0 lg:mt-0 lg:max-w-none lg:flex-none xl:ml-32">
         <div class="max-w-3xl flex-none sm:max-w-5xl lg:max-w-none">
           <div class="-m-2 rounded-xl bg-gray-900/5 p-2 ring-1 ring-inset ring-gray-900/10 lg:-m-4 lg:rounded-2xl lg:p-4">
-            <img src="../{{ $personalDealerSite->cover_photo }}" alt="App screenshot" width="900" height="534" class="w-[38rem] rounded-md shadow-2xl ring-1 ring-gray-900/10">
+            <img src="/{{ $personalDealerSite->cover_photo }}" alt="App screenshot" width="900" height="534" class="w-[38rem] rounded-md shadow-2xl ring-1 ring-gray-900/10">
           </div>
         </div>
       </div>
@@ -97,7 +97,7 @@
     <div class="mx-auto flex max-w-7xl flex-col items-center gap-x-8 gap-y-10 px-6 sm:gap-y-8 lg:px-8 xl:flex-row xl:items-stretch">
       <div class="-mt-8 w-full max-w-2xl xl:-mb-8 xl:w-96 xl:flex-none">
         <div class="relative aspect-[2/1] h-full md:-mx-8 xl:mx-0 xl:aspect-auto">
-          <img class="absolute inset-0 h-full w-full rounded-2xl bg-gray-800 object-cover shadow-2xl" src="../{{ $personalDealerSite->customer_testimonial_photo }}" alt="">
+          <img class="absolute inset-0 h-full w-full rounded-2xl bg-gray-800 object-cover shadow-2xl" src="/{{ $personalDealerSite->customer_testimonial_photo }}" alt="">
         </div>
       </div>
       <div class="w-full max-w-2xl xl:max-w-none xl:flex-auto xl:px-16 xl:py-24">
@@ -196,7 +196,7 @@
 -->
 <div class="relative bg-white">
   <div class="lg:absolute lg:inset-0 lg:left-1/2">
-    <img class="h-64 w-full bg-gray-50 object-cover sm:h-80 lg:absolute lg:h-full" src="../{{ $personalDealerSite -> photo}}" alt="">
+    <img class="h-64 w-full bg-gray-50 object-cover sm:h-80 lg:absolute lg:h-full" src="/{{ $personalDealerSite -> photo}}" alt="">
   </div>
   <div class="pb-24 pt-16 sm:pb-32 sm:pt-24 lg:mx-auto lg:grid lg:max-w-7xl lg:grid-cols-2 lg:pt-32">
     <div class="px-6 lg:px-8">
