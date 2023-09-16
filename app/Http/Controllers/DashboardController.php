@@ -10,7 +10,14 @@ class DashboardController extends Controller
 {
     public function dashboard()
     {
-        $dealerId = auth()->user()->PersonalSiteDetail->id;  // Assuming the logged-in user has a relation to a PersonalDealerSite via 'personal_dealer_site_id' attribute.
+        // Get dealerId if exists, else set to null
+        $dealerId = auth()->user()->PersonalSiteDetail ? auth()->user()->PersonalSiteDetail->id : null;
+
+        // If dealerId is null, redirect them to fill up the form
+        if (!$dealerId) {
+            return redirect()->route('personal_site_detail.create')
+                ->with('info', 'Please fill out your Personal Site Details first.');
+        }
 
         // Get leads for the dealer, ordered by created_at descending
         $leads = Lead::where('personal_dealer_site_id', $dealerId)
