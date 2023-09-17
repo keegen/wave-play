@@ -22,7 +22,7 @@ class PersonalDealerThemesTableSeeder extends Seeder
             ],
             [
                 'name' => 'Blue',
-                'image_path' => '/themes/tallstack/images/themes/black.jpg',
+                'image_path' => '/themes/tallstack/images/themes/blue.jpg',
                 'description' => 'Inspired by Honda and BMW',
             ],
             [
