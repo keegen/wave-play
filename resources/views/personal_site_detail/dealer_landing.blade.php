@@ -45,7 +45,7 @@
 <div class="relative isolate overflow-hidden bg-white">
     <div class="mx-auto max-w-7xl px-6 pb-24 pt-10 sm:pb-32 lg:flex lg:px-8 lg:py-40">
       <div class="mx-auto max-w-2xl lg:mx-0 lg:max-w-xl lg:flex-shrink-0 lg:pt-8">
-            <img class="inline-block h-20 w-20 rounded-full" src="/storage/{{ $personalDealerSite->photo }}" alt="">
+            <img class="inline-block h-20 w-20 rounded-full" src="{{ asset('storage/' . $personalDealerSite->photo) }}" alt="{{ $personalDealerSite->name }} profile photo">
         <h1 class="mt-10 text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">Hi! I'm {{ $personalDealerSite->name }}!</h1>
         <p class="mt-6 text-lg leading-8 text-gray-600">{{ $personalDealerSite->about }}</p>
         <div class="mt-10 flex items-center gap-x-6">
