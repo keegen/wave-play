@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-use App\Models\PersonalDealerThemes;
+use App\Models\PersonalDealerTheme;
 use Illuminate\Database\Seeder;
 
 class PersonalDealerThemesTableSeeder extends Seeder
