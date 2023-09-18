@@ -55,7 +55,7 @@ class PersonalDealerThemesTableSeeder extends Seeder
         ];
 
         foreach ($themes as $theme) {
-            PersonalDealerThemes::create($theme);
+            PersonalDealerTheme::create($theme);
         }
     }
 }
