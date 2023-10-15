@@ -18,6 +18,7 @@
         "lab404/laravel-impersonate": "^1.7",
         "laravel/framework": "^9.11",
         "laravel/tinker": "^2.7",
+        "league/flysystem-aws-s3-v3": "^3.16",
         "livewire/livewire": "^2.4",
         "sleiman/airtable-php": "^3.0",
         "tcg/voyager": "1.5.x-dev",

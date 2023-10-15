@@ -43,7 +43,6 @@ class PersonalSiteDetailController extends Controller
      */
     public function store(Request $request)
 {
-    // You might want to add validation rules for these fields
     $user = Auth::user();
 
     // Check if the user already has a detail record
@@ -64,28 +63,25 @@ class PersonalSiteDetailController extends Controller
     $siteDetail->customer_testimonial_name = $request->customer_testimonial_name;
 
     if ($request->hasFile('photo')) {
-        $path = $request->photo->store('photos', 'public');
+        $path = $request->photo->store('photos', 'spaces'); // Changed 'public' to 'spaces'
         $siteDetail->photo = $path;
     }
 
     if ($request->hasFile('cover_photo')) {
-        $path = $request->cover_photo->store('cover_photos', 'public');
+        $path = $request->cover_photo->store('cover_photos', 'spaces'); // Changed 'public' to 'spaces'
         $siteDetail->cover_photo = $path;
     }
 
     if ($request->hasFile('customer_testimonial_photo')) {
-        $path = $request->customer_testimonial_photo->store('testimonial_photos', 'public');
+        $path = $request->customer_testimonial_photo->store('testimonial_photos', 'spaces'); // Changed 'public' to 'spaces'
         $siteDetail->customer_testimonial_photo = $path;
     }
 
     // Save the PersonalSiteDetail through the relationship. 
-    // This also takes care of setting the user_id on the PersonalSiteDetail
     $user->personalSiteDetail()->save($siteDetail);
 
     return redirect()->route('themes/dashboard.siteinfo')->with(['detail' => $siteDetail]);
 }
-
-
 
 public function edit($id)
 {
@@ -103,6 +99,7 @@ public function update(Request $request, $id)
         'facebook_link' => 'max:100',
         'instagram_link' => 'max:100',
         'twitter_link' => 'max:100',
+        'youtube_link' => 'max:100',
         'customer_testimonial' => 'string',
         'customer_testimonial_name' => 'string',
         'photo' => 'image',
@@ -110,28 +107,26 @@ public function update(Request $request, $id)
         'customer_testimonial_photo' => 'image'
     ]);
 
-
     if ($request->hasFile('photo')) {
-        $path = $request->file('photo')->store('photos', 'public');
+        $path = $request->file('photo')->store('photos', 'spaces'); // Changed 'public' to 'spaces'
         $validatedData['photo'] = $path;
-
     }
 
     if ($request->hasFile('cover_photo')) {
-        $pathCover = $request->file('cover_photo')->store('cover_photos', 'public');
+        $pathCover = $request->file('cover_photo')->store('cover_photos', 'spaces'); // Changed 'public' to 'spaces'
         $validatedData['cover_photo'] = $pathCover;
     }
-    
+
     if ($request->hasFile('customer_testimonial_photo')) {
-        $pathTestimonial = $request->file('customer_testimonial_photo')->store('testimonial_photos', 'public');
+        $pathTestimonial = $request->file('customer_testimonial_photo')->store('testimonial_photos', 'spaces'); // Changed 'public' to 'spaces'
         $validatedData['customer_testimonial_photo'] = $pathTestimonial;
     }
-    
 
     $siteDetail->update($validatedData);
 
     return redirect()->route('themes/dashboard.siteinfo')->with(['detail' => $siteDetail]);
 }
+
 
 public function show($id)
 {
