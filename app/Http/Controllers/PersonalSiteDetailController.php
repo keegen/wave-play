@@ -145,6 +145,10 @@ public function showlanding($name)
         abort(404, 'Site not found.');
     }
 
+    // Retrieve the user's selected theme
+    $userThemePreference = UserThemePreference::where('user_id', $personalDealerSite->user_id)->first();
+    $dealerTheme = PersonalDealerTheme::find($userThemePreference->theme_id);
+
     // Retrieve Airtable data here
     $newVehicles = $this->fetchAirtableData($personalDealerSite->user, 'new');
     $usedVehicles = $this->fetchAirtableData($personalDealerSite->user, 'used');
@@ -155,8 +159,9 @@ public function showlanding($name)
     // Check if there are no used vehicles available
     $noUsedVehiclesAvailable = empty($usedVehicles['records']);
 
-    return view('/personal_site_detail/dealer_landing', compact('personalDealerSite', 'newVehicles', 'usedVehicles', 'noNewVehiclesAvailable', 'noUsedVehiclesAvailable'));
+    return view('/personal_site_detail/dealer_landing', compact('personalDealerSite', 'newVehicles', 'usedVehicles', 'noNewVehiclesAvailable', 'noUsedVehiclesAvailable', 'dealerTheme'));
 }
+
 
 
 

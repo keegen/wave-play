@@ -12,9 +12,10 @@ class VehicleSearch extends Component
     public $newVehicles = [];
     public $usedVehicles = [];
     public $personalDealerSite;
+    public $dealerTheme;
 
 
-    public function mount($personalDealerSite) {
+    public function mount($personalDealerSite, $dealerTheme) {
         $controller = new PersonalSiteDetailController();
     
         $newVehiclesData = $controller->fetchAirtableData($personalDealerSite->user, 'new');
@@ -22,6 +23,8 @@ class VehicleSearch extends Component
     
         $usedVehiclesData = $controller->fetchAirtableData($personalDealerSite->user, 'used');
         $this->usedVehicles = $this->transformVehicles($usedVehiclesData);
+
+        $this->dealerTheme = $dealerTheme;
     }
     
 

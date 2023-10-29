@@ -49,7 +49,7 @@
         <h1 class="mt-10 text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">Hi! I'm {{ $personalDealerSite->name }}!</h1>
         <p class="mt-6 text-lg leading-8 text-gray-600">{{ $personalDealerSite->about }}</p>
         <div class="mt-10 flex items-center gap-x-6">
-          <a href="#contact" class="rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Contact me</a>
+          <a href="#contact" class="rounded-md bg-{{ $dealerTheme->pd_theme_primary_color }} px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-{{ $dealerTheme->pd_theme_primary_color }} focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-{{ $dealerTheme->pd_theme_secondary_color }}">Contact me</a>
           <a href="#inventory" class="text-sm font-semibold leading-6 text-gray-900">See inventory <span aria-hidden="true">→</span></a>
         </div>
         <!-- Social Icons -->
@@ -83,8 +83,8 @@
       </div>
       <div class="mx-auto mt-16 flex max-w-2xl sm:mt-24 lg:ml-10 lg:mr-0 lg:mt-0 lg:max-w-none lg:flex-none xl:ml-32">
         <div class="max-w-3xl flex-none sm:max-w-5xl lg:max-w-none">
-          <div class="-m-2 rounded-xl bg-gray-900/5 p-2 ring-1 ring-inset ring-gray-900/10 lg:-m-4 lg:rounded-2xl lg:p-4">
-            <img src="{{ Storage::disk('spaces')->url($personalDealerSite->cover_photo) }}" alt="Personal Dealer Site Cover Photo" width="900" height="534" class="w-[38rem] rounded-md shadow-2xl ring-1 ring-gray-900/10">
+          <div class="-m-2 rounded-xl bg-gray-900/5 p-2 ring-inset ring-gray-900/10 lg:-m-4 lg:rounded-2xl lg:p-4">
+            <img src="{{ Storage::disk('spaces')->url($personalDealerSite->cover_photo) }}" alt="Personal Dealer Site Cover Photo" width="900" height="534" class="w-[38rem] rounded-md shadow-2xl ring-gray-900/10">
           </div>
         </div>
       </div>
@@ -93,7 +93,7 @@
 
 <!-- Testimonials -->
 <div class="bg-white pb-16 pt-24 sm:pb-24 sm:pt-32 xl:pb-32">
-  <div class="bg-gray-900 pb-20 sm:pb-24 xl:pb-0">
+  <div class="bg-{{ $dealerTheme->pd_theme_secondary_color }} pb-20 sm:pb-24 xl:pb-0">
     <div class="mx-auto flex max-w-7xl flex-col items-center gap-x-8 gap-y-10 px-6 sm:gap-y-8 lg:px-8 xl:flex-row xl:items-stretch">
       <div class="-mt-8 w-full max-w-2xl xl:-mb-8 xl:w-96 xl:flex-none">
         <div class="relative aspect-[2/1] h-full md:-mx-8 xl:mx-0 xl:aspect-auto">
@@ -129,7 +129,7 @@
       @if (empty($newVehicles['records']) && empty($usedVehicles['records']))
           <p class="mt-1 text-sm font-medium text-gray-900">Sorry, there are no vehicles available at the moment.</p>
       @else
-      <livewire:vehicle-search :personalDealerSite="$personalDealerSite" />
+      <livewire:vehicle-search :personalDealerSite="$personalDealerSite" :dealerTheme="$dealerTheme" />
 
           <!-- Modals (outside the grid) -->
           @foreach($newVehicles['records'] as $vehicle)
@@ -161,7 +161,7 @@
                           </select>
                           <input type="hidden" name="stock_number" value="{{ $vehicle->fields->{'Stock'} }}">
                           <input type="hidden" name="personal_dealer_site_id" value="{{ $personalDealerSite->id }}">
-                          <button type="submit" class="px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 mt-4">
+                          <button type="submit" class="px-3 py-2 text-sm font-medium text-center text-white bg-{{ $dealerTheme->pd_theme_primary_color }} rounded-lg hover:bg-{{ $dealerTheme->pd_theme_secondary_color }} focus:ring-4 focus:outline-none focus:ring-{{ $dealerTheme->pd_theme_primary_color }} dark:bg-{{ $dealerTheme->pd_theme_secondary_color }} dark:hover:bg-{{ $dealerTheme->pd_theme_secondary_color }} dark:focus:ring-{{ $dealerTheme->pd_theme_secondary_color }} mt-4">
                               Submit
                           </button>
                       </div>
@@ -203,7 +203,7 @@
       <div class="mx-auto max-w-xl lg:mx-0 lg:max-w-lg">
         <h2 class="text-3xl font-bold tracking-tight text-gray-900" id="contact">Contact</h2>
         <p class="mt-2 text-lg leading-8 text-gray-600">I'm looking forward to helping you.</p>
-        @livewire('contact-form', ['dealerId' => $personalDealerSite->id])
+        @livewire('contact-form', ['dealerId' => $personalDealerSite->id, 'dealerTheme' => $dealerTheme])
       </div>
     </div>
   </div>

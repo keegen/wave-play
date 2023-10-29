@@ -25,7 +25,7 @@
             <p class="mt-1 text-sm font-medium text-gray-900">{{ $vehicle['Color'] }}</p>
             <p class="mt-1 text-sm text-gray-500">Stock Number: {{ $vehicle['Stock'] }}</p>
             <p class="mt-1 text-sm text-gray-500">MSRP: {{ $vehicle['MSRP'] }}</p>
-            <button class="interestButton px-3 py-2 text-xs font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 mt-4" data-modal="{{ $vehicle['Stock'] }}">
+            <button class="interestButton px-3 py-2 text-xs font-medium text-center text-white bg-{{ $dealerTheme->pd_theme_secondary_color }} rounded-lg hover:bg-{{ $dealerTheme->pd_theme_secondary_color }} focus:ring-4 focus:outline-none focus:ring-{{ $dealerTheme->pd_theme_primary_color }} dark:bg-{{ $dealerTheme->pd_theme_primary_color }} dark:hover:bg-{{ $dealerTheme->pd_theme_primary_color }} dark:focus:ring-{{ $dealerTheme->pd_theme_secondary_color }} mt-4" data-modal="{{ $vehicle['Stock'] }}">
                 I'm Interested
             </button>
         </div>
