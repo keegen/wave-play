@@ -15,13 +15,13 @@ class ContactForm extends Component
     public $notes = '';
     public $status = 'new';
     public $dealerId;
-    public $dealerTheme;
+    public $dealerTheme = null;
 
     public function mount($dealerId, $dealerTheme)
     {
         $this->dealerId = $dealerId;
         $this->dealerTheme = $dealerTheme;
-    }
+    }    
 
     public function submitForm()
     {
