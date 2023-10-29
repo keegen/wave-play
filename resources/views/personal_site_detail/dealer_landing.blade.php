@@ -129,7 +129,7 @@
       @if (empty($newVehicles['records']) && empty($usedVehicles['records']))
           <p class="mt-1 text-sm font-medium text-gray-900">Sorry, there are no vehicles available at the moment.</p>
       @else
-      <livewire:vehicle-search :personalDealerSite="$personalDealerSite" :dealerTheme="$dealerTheme" />
+      <livewire:vehicle-search :personal-dealer-site="$personalDealerSite" :dealer-theme="$dealerTheme" />
 
           <!-- Modals (outside the grid) -->
           @foreach($newVehicles['records'] as $vehicle)

@@ -60,8 +60,8 @@ class VehicleSearch extends Component
     }
     public function clearSearch() {
         $this->search = '';
-        $this->mount($this->personalDealerSite); // This will re-fetch all the vehicles without any filter.
-    }
+        $this->mount($this->personalDealerSite, $this->dealerTheme); // Pass $this->dealerTheme as well
+    }    
         
     public function render()
 {
