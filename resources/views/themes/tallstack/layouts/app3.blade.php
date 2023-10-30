@@ -6,7 +6,7 @@
         <title>{{ $seo->title }}</title>
     @else
         <title>
-            {{ setting('site.title', 'Laravel Wave') . ' - ' . setting('site.description', 'The Software as a Service Starter Kit built on Laravel & Voyager') }}
+            {{ setting('site.title', 'Personal Dealer Site') . ' - ' . setting('site.description', 'Helping Sales Professionals Deliver Standout Customer Service') }}
         </title>
     @endif
 
