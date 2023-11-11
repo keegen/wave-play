@@ -77,7 +77,8 @@
     
     
     
-    
+    <script src="https://unpkg.com/@trycourier/courier"></script>
+
 </head>
 
 <body data-new-gr-c-s-check-loaded="14.1110.0" data-gr-ext-installed="">
@@ -314,7 +315,8 @@
                             <form class="relative flex flex-1" action="#" method="GET">
                             </form>
                             <div class="flex items-center gap-x-4 lg:gap-x-6">
-                                <button type="button" class="-m-2.5 p-2.5 text-gray-400 hover:text-gray-500">
+                                <div id="inbox"></div>
+                                <!-- <button type="button" class="-m-2.5 p-2.5 text-gray-400 hover:text-gray-500">
                                     <span class="sr-only">View notifications</span>
                                     <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                                         stroke="currentColor" aria-hidden="true">
@@ -322,7 +324,7 @@
                                             d="M14.857 17.082a23.848 23.848 0 005.454-1.31A8.967 8.967 0 0118 9.75v-.7V9A6 6 0 006 9v.75a8.967 8.967 0 01-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 01-5.714 0m5.714 0a3 3 0 11-5.714 0">
                                         </path>
                                     </svg>
-                                </button>
+                                </button> -->
 
                                 <!-- Separator -->
                                 <div class="hidden lg:block lg:h-6 lg:w-px lg:bg-gray-200" aria-hidden="true"></div>
@@ -331,7 +333,7 @@
                                 <div @click.away="open = false" class="relative flex items-center h-full ml-3" x-data="{ open: false }">
                                     <div>
                                         <button @click="open = !open" class="flex text-sm transition duration-150 ease-in-out border-2 border-transparent rounded-full focus:outline-none focus:border-gray-300" id="user-menu" aria-label="User menu" aria-haspopup="true" x-bind:aria-expanded="open" aria-expanded="true">
-                                            <img class="w-8 h-8 rounded-full" src="{{ auth()->user()->avatar() . '?' . time() }}" alt="{{ auth()->user()->name }}'s Avatar">
+                                            <img class="w-8 h-8 rounded-full" src="{{ Auth::user()->personalSiteDetail->photo . '?' . time() }}" alt="{{ auth()->user()->name }}'s Avatar">
                                         </button>
                                     </div>
                         
@@ -408,7 +410,18 @@
         
     </div>
 </div>
-
+<script>
+    // Initialize the Courier Inbox
+    const courier = window.Courier({
+      clientKey: "OWYwZDQyYzQtZWU2Yy00M2JmLWIzNWEtOGU1NGZhNmMwYTI1",
+      userId: "{{ auth()->user()->id }}", // Replace with the user ID
+    });
+  
+    // Render the Inbox
+    courier.renderInbox({
+      element: "#inbox", // The HTML element where you want to mount the inbox
+    });
+  </script>
 </body>
 
 

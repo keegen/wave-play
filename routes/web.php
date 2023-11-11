@@ -63,10 +63,11 @@ Route::post('/airtable/store', [AirtableController::class, 'store'])->name('airt
 
 Route::post('/store-lead', 'App\Http\Controllers\PersonalSiteDetailController@storeLead')->name('store-lead');
 
+Route::middleware(['auth'])->group(function () {
 Route::post('/lead/{lead}/update', 'App\Http\Controllers\LeadController@updateLead')->name('updateLead');
-
 Route::get('/lead/{lead}/details', 'App\Http\Controllers\LeadController@show')->name('lead.details');
 Route::post('/lead/{lead}/details', 'App\Http\Controllers\LeadController@update')->name('lead.update');
+});
 
 
 // Display themes for selection

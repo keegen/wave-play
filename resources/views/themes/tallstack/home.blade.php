@@ -150,7 +150,8 @@
             <a href="/pricing" class="flex items-center justify-center px-10 py-5 mt-10 text-xl font-medium text-black bg-white rounded-full hover:bg-white lg:mt-0" data-primary="black-500" data-rounded="rounded-full">Get Started Now</a>
         </div>
     </div>
-</section><section class="py-16 bg-white md:py-20 lg:py-24" data-tails-scripts="//unpkg.com/alpinejs">
+</section>
+<section class="py-16 bg-white md:py-20 lg:py-24" data-tails-scripts="//unpkg.com/alpinejs">
     <div class="max-w-5xl px-12 mx-auto xl:px-0">
 
         <h2 class="text-3xl font-black md:text-4xl lg:text-6xl xl:text-7xl">Frequently Asked Questions</h2>
