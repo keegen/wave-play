@@ -19,6 +19,7 @@ use App\Http\Controllers\PersonalSiteDetailController;
 use App\Http\Controllers\AirtableController;
 use App\Http\Controllers\LeadController;
 use App\Http\Controllers\UserThemeController;
+use App\Http\Controllers\ReviewController;
 
 // Authentication routes
 Auth::routes();
@@ -75,3 +76,5 @@ Route::get('/theme/select', 'App\Http\Controllers\UserThemeController@selectThem
 
 // Store user's theme selection
 Route::post('/theme/store', 'App\Http\Controllers\UserThemeController@storeTheme')->name('theme.store');
+
+Route::post('/personal-site/{personalSiteDetail}/reviews', [ReviewController::class, 'store']);
