@@ -1,12 +1,25 @@
-<form wire:submit.prevent="submit">
-    <input type="text" wire:model="author" placeholder="Your Name">
-    <textarea wire:model="content" placeholder="Leave your review here"></textarea>
-    @for ($i = 1; $i <= 5; $i++)
-        <input type="radio" wire:model="rating" id="star{{ $i }}" value="{{ $i }}"><label for="star{{ $i }}">☆</label>
-    @endfor
-    <button type="submit">Submit Review</button>
-</form>
+<form wire:submit.prevent="submit" class="space-y-4">
+    @csrf
 
-@if (session()->has('message'))
-    <div>{{ session('message') }}</div>
-@endif
+    <!-- Rating Field -->
+    <!-- ... same as before, but with Livewire model binding -->
+    <select wire:model="rating" id="rating" name="rating" class="...">
+        <!-- options -->
+    </select>
+    @error('rating') <span class="error">{{ $message }}</span> @enderror
+
+    <!-- Review Field -->
+    <!-- ... same as before, but with Livewire model binding -->
+    <textarea wire:model="review" id="review" name="review" rows="4" class="..."></textarea>
+    @error('review') <span class="error">{{ $message }}</span> @enderror
+
+    <!-- Name Field -->
+    <!-- ... same as before, but with Livewire model binding -->
+    <input wire:model="name" type="text" id="name" name="name" class="...">
+    @error('name') <span class="error">{{ $message }}</span> @enderror
+
+    <!-- Submit Button -->
+    <button type="submit" class="...">
+        Submit Review
+    </button>
+</form>

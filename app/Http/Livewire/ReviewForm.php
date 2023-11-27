@@ -3,30 +3,37 @@
 namespace App\Http\Livewire;
 
 use Livewire\Component;
-use App\Models\Review;
+use App\Models\Review; // Import your Review model
 
 class ReviewForm extends Component
 {
-    public $author;
-    public $content;
+    public $personalSiteDetailId;
     public $rating;
+    public $review;
+    public $name;
+
+    protected $rules = [
+        'rating' => 'required|integer|min:1|max:5',
+        'review' => 'required|string|max:255',
+        'name' => 'required|string|max:100',
+    ];
 
     public function submit()
     {
-        $this->validate([
-            'author' => 'required',
-            'content' => 'required',
-            'rating' => 'required|integer|min:1|max:5',
-        ]);
+        $this->validate();
 
+        // Create and save the review
         Review::create([
-            'author' => $this->author,
-            'content' => $this->content,
+            'personal_site_detail_id' => $this->personalSiteDetailId,
             'rating' => $this->rating,
-            'approved' => false, // Assuming all reviews need approval
+            'review' => $this->review,
+            'name' => $this->name,
         ]);
 
-        session()->flash('message', 'Review submitted successfully.');
+        // Reset form fields
+        $this->reset(['rating', 'review', 'name']);
+
+        // Add additional logic like sending a notification, etc.
     }
 
     public function render()

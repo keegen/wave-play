@@ -91,48 +91,6 @@
     </div>
 </div>
 
-<!-- Testimonials -->
-<div x-data="reviewSlider()" class="review-slider">
-  <!-- Slider for Reviews -->
-  <template x-for="review in reviews" :key="review.id">
-      <div class="review">
-        <p x-text="request.rating"></p>
-          <p x-text="review.review_text"></p>
-          <h5 x-text="review.author"></h5>
-      </div>
-  </template>
-
-  <!-- Empty State -->
-  <div x-show="reviews.length === 0">
-      <p>No reviews yet. Be the first to leave a review!</p>
-  </div>
-
-  <!-- Review Submission Form -->
-<form method="POST" action="{{ route('reviews.store') }}">
-  @csrf
-  <div class="rating">
-      <input type="radio" name="rating" id="star5" value="5"><label for="star5">☆</label>
-      <input type="radio" name="rating" id="star4" value="4"><label for="star4">☆</label>
-      <input type="radio" name="rating" id="star3" value="3"><label for="star3">☆</label>
-      <input type="radio" name="rating" id="star2" value="2"><label for="star2">☆</label>
-      <input type="radio" name="rating" id="star1" value="1"><label for="star1">☆</label>
-  </div>
-  <input type="text" name="guest_name" placeholder="Your Name">
-  <textarea name="review_text" placeholder="Leave your review here"></textarea>
-  <button type="submit">Submit Review</button>
-</form>
-
-</div>
-
-<script>
-  function reviewSlider() {
-      return {
-          reviews: @json($reviews),
-      };
-  }
-</script>
-
-
 <!--Old Testimonials
 <div class="bg-white pb-16 pt-24 sm:pb-24 sm:pt-32 xl:pb-32">
   <div class="bg-{{ $dealerTheme->pd_theme_secondary_color }} pb-20 sm:pb-24 xl:pb-0">
@@ -163,7 +121,9 @@
 <!-- New Testimonials -->
 
 @livewire('review-slider')
-@livewire('review-form')
+@livewire('review-form', ['personalSiteDetailId' => $personalSiteDetail->id])
+
+
 
 
 <!-- Endo of Testimonials -->
