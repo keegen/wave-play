@@ -142,3 +142,24 @@ window.switchPlans = function(plan_id, plan_name){
 
 
 /********** Switch Plans Button Click ***********/
+
+
+
+/****** I'm Interested Button */
+document.addEventListener('DOMContentLoaded', function () {
+    const interestButtons = document.querySelectorAll('.interestButton');
+
+    interestButtons.forEach((button) => {
+        button.addEventListener('click', function() {
+            const modalId = 'modal-' + button.getAttribute('data-modal');
+            const modal = document.getElementById(modalId);
+            modal.classList.remove('hidden');
+            
+            // Attach close event to each modal's close button
+            const closeModal = modal.querySelector('.closeModal');
+            closeModal.addEventListener('click', function() {
+                modal.classList.add('hidden');
+            });
+        });
+    });
+});

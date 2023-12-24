@@ -77,5 +77,5 @@ Route::get('/theme/select', 'App\Http\Controllers\UserThemeController@selectThem
 // Store user's theme selection
 Route::post('/theme/store', 'App\Http\Controllers\UserThemeController@storeTheme')->name('theme.store');
 
-Route::post('/personal-site/{personalSiteDetail}/reviews', [ReviewController::class, 'store'])->name('reviews.store');
+Route::post('{personalSiteDetail}/reviews', [ReviewController::class, 'store'])->name('reviews.store');
 

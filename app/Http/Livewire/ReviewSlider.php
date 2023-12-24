@@ -7,15 +7,23 @@ use App\Models\Review;
 
 class ReviewSlider extends Component
 {
+    public $personalSiteDetailId;
     public $reviews;
 
-    public function mount()
+    public function mount($personalSiteDetailId)
     {
-        $this->reviews = Review::where('approved', true)->get();
+        $this->personalSiteDetailId = $personalSiteDetailId;
+
+        // Fetch approved reviews using Eloquent relationship
+        $this->reviews = Review::where('personal_site_detail_id', $personalSiteDetailId)
+            ->approved() // Assuming you have a scope 'approved'
+            ->get(); // Fetch reviews as a Collection
     }
 
     public function render()
     {
-        return view('livewire.review-slider');
+        return view('livewire.review-slider', [
+            'reviews' => $this->reviews
+        ]);
     }
 }

@@ -13,27 +13,11 @@
     <meta name="googlebot" content="index,follow">
 
     <meta name="description" content="This is a PersonalDealer.Site for {{ $personalDealerSite->name }}">
-    <script src="https://unpkg.com/alpinejs" defer></script>
-    <!-- resources/views/landing.blade.php -->
-<script>
-  document.addEventListener('DOMContentLoaded', function () {
-    const interestButtons = document.querySelectorAll('.interestButton');
+    <script src="https://cdn.jsdelivr.net/npm/alpinejs@2.6.0/dist/alpine.js" defer></script>
 
-    interestButtons.forEach((button) => {
-        button.addEventListener('click', function() {
-            const modalId = 'modal-' + button.getAttribute('data-modal');
-            const modal = document.getElementById(modalId);
-            modal.classList.remove('hidden');
-            
-            // Attach close event to each modal's close button
-            const closeModal = modal.querySelector('.closeModal');
-            closeModal.addEventListener('click', function() {
-                modal.classList.add('hidden');
-            });
-        });
-    });
-});
-</script>
+
+    <!-- resources/views/landing.blade.php -->
+    
 
     <link href="{{ asset('themes/' . $theme->folder . '/css/app.css') }}" rel="stylesheet">
 
@@ -120,8 +104,9 @@
 -->
 <!-- New Testimonials -->
 
-@livewire('review-slider')
-@livewire('review-form', ['personalSiteDetailId' => $personalSiteDetail->id])
+<div>
+  @livewire('review-slider', ['personalSiteDetailId' => $personalDealerSite->id])
+</div>
 
 
 
@@ -255,7 +240,39 @@
 
       gtag('config', '{{ setting("site.google_analytics_tracking_id") }}');
   </script>
+<script>
+  console.log('Script loaded!');
+</script>
+<script>
+  function reviewSlider(reviews) {
+      console.log('Function called!');
+      console.log('Parsed Reviews:', JSON.parse(reviews));
+      return {
+          activeSlide: 0,
+          reviews: JSON.parse(reviews),
 
+          prevSlide() {
+              this.activeSlide = this.activeSlide === 0 ? this.reviews.length - 1 : this.activeSlide - 1;
+          },
+
+          nextSlide() {
+              this.activeSlide = this.activeSlide === this.reviews.length - 1 ? 0 : this.activeSlide + 1;
+          },
+
+          isActive(index) {
+              return index === this.activeSlide;
+          },
+
+          isNext(index) {
+              return index === (this.activeSlide + 1) % this.reviews.length;
+          },
+
+          isPrev(index) {
+              return index === (this.activeSlide - 1 + this.reviews.length) % this.reviews.length;
+          },
+      }
+  }
+</script>
 @endif
 
 
