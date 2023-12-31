@@ -36,4 +36,47 @@ class ReviewController extends Controller
         // Redirect back with a success message
         return back()->with('success', 'Your review has been submitted successfully.');
     }
+
+    public function index()
+    {
+        // Retrieve all reviews, ordered by the newest first
+        $reviews = Review::orderBy('created_at', 'desc')->get();
+    
+        // Return the view with the reviews data
+        return view('themes.tallstack.dashboard.index', [ // Replace 'reviews.index' with the actual view path
+            'reviews' => $reviews,
+        ]);
+    }
+
+
+    public function approve($id)
+{
+    $review = Review::findOrFail($id);
+    $review->update(['is_approved' => true]);
+
+    return redirect()->route('dashboard.reviews.index')
+        ->with('success', 'Review approved successfully.');
+}
+
+public function reject($id)
+{
+    $review = Review::findOrFail($id);
+    $review->update(['is_approved' => false]);
+
+    return redirect()->route('dashboard')
+        ->with('success', 'Review rejected successfully.');
+}
+
+public function toggleStatus($id)
+{
+    $review = Review::findOrFail($id);
+    $review->is_approved = !$review->is_approved;
+    $review->save();
+    
+    session(['activeTab' => 'reviews']);
+    return redirect()->route('dashboard'); // Or the appropriate route name
+}
+
+
+
 }

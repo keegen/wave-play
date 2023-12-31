@@ -9,8 +9,14 @@ class Review extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['user_id', 'rating', 'review_text', 'guest_name'];
+    protected $fillable = ['user_id', 'rating', 'review_text', 'guest_name', 'personal_site_detail_id'];
 
+    public function toggleApproval()
+    {
+        $this->is_approved = !$this->is_approved;
+        $this->save();
+    }
+    
     public function user()
     {
         return $this->belongsTo(User::class);

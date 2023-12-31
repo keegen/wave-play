@@ -1,12 +1,14 @@
 {
     "private": true,
     "scripts": {
-        "dev": "mix",
+        "dev": "npm run development",
+        "development": "mix",
         "watch": "mix watch",
         "watch-poll": "mix watch -- --watch-options-poll=1000",
         "hot": "mix watch --hot",
-        "production": "mix --production"
+        "prod": "npm run production"
     },
+    
     "devDependencies": {
         "autoprefixer": "^10.4.0",
         "axios": "^0.24.0",

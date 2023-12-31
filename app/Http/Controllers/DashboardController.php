@@ -5,12 +5,15 @@ namespace App\Http\Controllers;
 use App\Models\Lead;
 use Illuminate\Http\Request;
 use App\Models\Contact;
+use App\Models\Review;
+
 
 class DashboardController extends Controller
 {
     public function dashboard()
 {
     $user = auth()->user();
+    $userId = $user->id;
     $personalSiteDetail = $user->PersonalSiteDetail;
 
     // If PersonalSiteDetail is null, redirect them to fill up the form
@@ -20,6 +23,7 @@ class DashboardController extends Controller
     }
 
     $dealerId = $personalSiteDetail->id;
+    $personalDealerSiteId = $personalSiteDetail->id;
 
     // Get leads for the dealer, ordered by created_at descending
     $leads = Lead::where('personal_dealer_site_id', $dealerId)
@@ -44,7 +48,11 @@ class DashboardController extends Controller
         (($last30DaysContactsCount - $previous30DaysContactsCount) / $previous30DaysContactsCount) * 100 : 
         0;
 
+    $reviews = Review::all();
+
     return view('themes.tallstack.dashboard.index', [
+        'personalDealerSiteId' => $personalDealerSiteId,
+        'userId' => $userId,
         'contacts' => $contacts,
         'leads' => $leads,
         'leadsCount' => $last30DaysLeadsCount,
@@ -52,6 +60,7 @@ class DashboardController extends Controller
         'contactsCount' => $last30DaysContactsCount,
         'contactsGrowthPercentage' => $contactsGrowthPercentage,
         'personalSiteDetail' => $personalSiteDetail,
+        'reviews' => $reviews,
     ]);
 }
 

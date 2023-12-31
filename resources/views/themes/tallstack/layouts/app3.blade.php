@@ -45,7 +45,13 @@
     @if(isset($seo->description))
         <meta name="description" content="{{ $seo->description }}">
     @endif
-    <script src="https://unpkg.com/alpinejs" defer></script>   
+    <script src="https://unpkg.com/alpinejs" defer></script> 
+    <script src="{{ asset('themes/tallstack/js/app.js') }}"></script>
+
+
+
+
+    @livewireScripts  
     <link
         href="{{ asset('themes/tallstack/css/app.css') }}"
         rel="stylesheet">
@@ -410,6 +416,7 @@
         
     </div>
 </div>
+
 <script>
     // Initialize the Courier Inbox
     const courier = window.Courier({

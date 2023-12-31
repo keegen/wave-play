@@ -56,6 +56,8 @@ Route::put('/siteinfo/{id}', 'App\Http\Controllers\PersonalSiteDetailController@
 
 
 Route::get('dashboard', 'App\Http\Controllers\DashboardController@dashboard')->name('dashboard');
+
+
 Route::get('/{name}', 'App\Http\Controllers\PersonalSiteDetailController@showlanding')->name('showlanding');
 
 
@@ -69,6 +71,26 @@ Route::post('/lead/{lead}/update', 'App\Http\Controllers\LeadController@updateLe
 Route::get('/lead/{lead}/details', 'App\Http\Controllers\LeadController@show')->name('lead.details');
 Route::post('/lead/{lead}/details', 'App\Http\Controllers\LeadController@update')->name('lead.update');
 });
+
+Route::middleware(['auth'])->group(function () {
+    Route::put('dashboard/reviews/approve/{id}', 'App\Http\Controllers\ReviewController@approve')
+        ->name('dashboard.reviews.approve');
+
+    Route::put('dashboard/reviews/reject/{id}', 'App\Http\Controllers\ReviewController@reject')
+        ->name('dashboard.reviews.reject');
+});
+
+Route::middleware(['auth'])->group(function () {
+    // Define the dashboard.reviews.index route here
+    Route::get('dashboard/reviews', [ReviewController::class, 'index'])
+        ->name('dashboard.reviews.index');
+});
+
+Route::middleware(['auth'])->group(function () {
+    Route::put('dashboard/reviews/toggleStatus/{id}', 'App\Http\Controllers\ReviewController@toggleStatus')
+        ->name('dashboard.reviews.toggleStatus');
+});
+
 
 
 // Display themes for selection

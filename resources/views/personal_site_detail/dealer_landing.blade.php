@@ -3,7 +3,7 @@
 <head>
     <title>{{ $personalDealerSite->name }}</title>
     <meta charset="utf-8">
-    <meta http-equiv="x-ua-compatible" content="ie=edge"> <!-- † -->
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="url" content="{{ url('/') }}">
@@ -13,17 +13,13 @@
     <meta name="googlebot" content="index,follow">
 
     <meta name="description" content="This is a PersonalDealer.Site for {{ $personalDealerSite->name }}">
-    <script src="https://cdn.jsdelivr.net/npm/alpinejs@2.6.0/dist/alpine.js" defer></script>
-
-
-    <!-- resources/views/landing.blade.php -->
-    
+    <script src="https://cdn.jsdelivr.net/npm/alpinejs@2.8.0/dist/alpine.js"></script>
 
     <link href="{{ asset('themes/' . $theme->folder . '/css/app.css') }}" rel="stylesheet">
-
     @livewireStyles
 </head>
 <body class="flex flex-col min-h-screen">
+    <!-- [Body content] -->
 
 <!-- Hero -->
 <div class="relative isolate overflow-hidden bg-white">
@@ -106,6 +102,12 @@
 
 <div>
   @livewire('review-slider', ['personalSiteDetailId' => $personalDealerSite->id])
+</div>
+<div>
+  @livewire('review-form', [
+    'personalSiteDetailId' => $personalDealerSite->id,
+    'dealerTheme' => $dealerTheme
+])
 </div>
 
 
@@ -221,59 +223,7 @@
 </footer>
  
 
-  @livewireScripts
-  @if(!auth()->guest() && auth()->user()->hasAnnouncements())
-  @include('theme::partials.announcements')
-@endif
 
-<!-- Scripts -->
-<script type="module" src="{{ asset('themes/' . $theme->folder . '/js/app.js') }}"></script>
-
-@yield('javascript')
-
-@if(setting('site.google_analytics_tracking_id', ''))
-  <!-- Global site tag (gtag.js) - Google Analytics -->
-  <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-
-      gtag('config', '{{ setting("site.google_analytics_tracking_id") }}');
-  </script>
-<script>
-  console.log('Script loaded!');
-</script>
-<script>
-  function reviewSlider(reviews) {
-      console.log('Function called!');
-      console.log('Parsed Reviews:', JSON.parse(reviews));
-      return {
-          activeSlide: 0,
-          reviews: JSON.parse(reviews),
-
-          prevSlide() {
-              this.activeSlide = this.activeSlide === 0 ? this.reviews.length - 1 : this.activeSlide - 1;
-          },
-
-          nextSlide() {
-              this.activeSlide = this.activeSlide === this.reviews.length - 1 ? 0 : this.activeSlide + 1;
-          },
-
-          isActive(index) {
-              return index === this.activeSlide;
-          },
-
-          isNext(index) {
-              return index === (this.activeSlide + 1) % this.reviews.length;
-          },
-
-          isPrev(index) {
-              return index === (this.activeSlide - 1 + this.reviews.length) % this.reviews.length;
-          },
-      }
-  }
-</script>
-@endif
 
 
   <!-- Full Screen Loader -->
@@ -286,12 +236,13 @@
   </div>
   <!-- End Full Loader -->
 
-
+  @livewireScripts
   @include('theme::partials.toast')
   @if(session('message'))
       <script>setTimeout(function(){ popToast("{{ session('message_type') }}", "{{ session('message') }}"); }, 10);</script>
   @endif
   @waveCheckout
 
+  <script type="module" src="{{ asset('themes/' . $theme->folder . '/js/app.js') }}"></script>
 </body>
 </html>

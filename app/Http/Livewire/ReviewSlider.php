@@ -9,16 +9,26 @@ class ReviewSlider extends Component
 {
     public $personalSiteDetailId;
     public $reviews;
+    public $activeIndex = 0;
 
     public function mount($personalSiteDetailId)
     {
         $this->personalSiteDetailId = $personalSiteDetailId;
-
-        // Fetch approved reviews using Eloquent relationship
         $this->reviews = Review::where('personal_site_detail_id', $personalSiteDetailId)
-            ->approved() // Assuming you have a scope 'approved'
-            ->get(); // Fetch reviews as a Collection
+                               ->approved()
+                               ->get();
     }
+
+    public function nextReview()
+{
+    $this->activeIndex = ($this->activeIndex + 1) % $this->reviews->count();
+}
+
+public function previousReview()
+{
+    $this->activeIndex = $this->activeIndex === 0 ? $this->reviews->count() - 1 : $this->activeIndex - 1;
+}
+
 
     public function render()
     {
