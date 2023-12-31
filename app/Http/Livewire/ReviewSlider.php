@@ -12,12 +12,13 @@ class ReviewSlider extends Component
     public $activeIndex = 0;
 
     public function mount($personalSiteDetailId)
-    {
-        $this->personalSiteDetailId = $personalSiteDetailId;
-        $this->reviews = Review::where('personal_site_detail_id', $personalSiteDetailId)
-                               ->approved()
-                               ->get();
-    }
+{
+    $this->personalSiteDetailId = $personalSiteDetailId;
+    $this->reviews = Review::where('personal_site_detail_id', $personalSiteDetailId)
+                           ->approved()
+                           ->orderBy('created_at', 'desc') // Order by creation date, newest first
+                           ->get();
+}
 
     public function nextReview()
 {

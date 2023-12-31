@@ -17,8 +17,11 @@
         @foreach($newVehicles as $vehicle)
         <div class="group relative">
             <div class="w-full overflow-hidden bg-gray-200 group-hover:opacity-75 mt-10">
-                <img src="{{ $vehicle['Image'] }}" alt="{{ $vehicle['Vehicle'] }}" class="h-full w-full object-cover object-center">
-            </div>
+                <img src="{{ $vehicle['Image'] }}" 
+                     class="h-full w-full object-cover object-center" 
+                     onerror="this.onerror=null;this.src='/themes/tallstack/images/inventory_placeholder.png';"
+                     alt="{{ $vehicle['Vehicle'] }}" />
+            </div>            
             <h3 class="mt-4 font-medium text-sm text-gray-700">
                 {{ $vehicle['Vehicle'] }}
             </h3>

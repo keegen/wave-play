@@ -186,62 +186,6 @@
                     </div>
                 </div>
             </div>
-
-            <div>
-                <h2 class="text-base font-semibold leading-7 text-gray-900">Testimonial</h2>
-                <p class="mt-1 max-w-2xl text-sm leading-6 text-gray-600">Share a story of a happy customer.</p>
-
-                <div class="sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:py-6">
-                    <label for="Testimonial Photo"
-                        class="block text-sm font-medium leading-6 text-gray-900 sm:pt-1.5">Testimonial Photo</label>
-                    <div class="mt-2 sm:col-span-2 sm:mt-0">
-                        <div
-                            class="flex max-w-2xl justify-center rounded-lg border border-dashed border-gray-900/25 px-6 py-10">
-                            <div class="text-center">
-                                <svg class="mx-auto h-12 w-12 text-gray-300" viewBox="0 0 24 24" fill="currentColor"
-                                    aria-hidden="true">
-                                    <path fill-rule="evenodd"
-                                        d="M1.5 6a2.25 2.25 0 012.25-2.25h16.5A2.25 2.25 0 0122.5 6v12a2.25 2.25 0 01-2.25 2.25H3.75A2.25 2.25 0 011.5 18V6zM3 16.06V18c0 .414.336.75.75.75h16.5A.75.75 0 0021 18v-1.94l-2.69-2.689a1.5 1.5 0 00-2.12 0l-.88.879.97.97a.75.75 0 11-1.06 1.06l-5.16-5.159a1.5 1.5 0 00-2.12 0L3 16.061zm10.125-7.81a1.125 1.125 0 112.25 0 1.125 1.125 0 01-2.25 0z"
-                                        clip-rule="evenodd" />
-                                </svg>
-                                <div class="mt-4 flex text-sm leading-6 text-gray-600">
-                                    <label for="file-upload"
-                                        class="relative cursor-pointer rounded-md bg-white font-semibold text-indigo-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-600 focus-within:ring-offset-2 hover:text-indigo-500">
-                                        <input class="rounded-md bg-white px-2.5 py-1.5 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50" type="file" id="customer_testimonial_photo" name="customer_testimonial_photo" class="text-center">
-                                    </label>
-                                </div>
-                                <p class="text-xs leading-5 text-gray-600">PNG, JPG, GIF up to 10MB</p>
-                                @if (Auth::user()->personalSiteDetail && Auth::user()->personalSiteDetail->customer_testimonial_photo)
-                                <p class="text-xs leading-5 text-indigo-600"><a target="_blank" href="../{{ Auth::user()->personalSiteDetail->customer_testimonial_photo }}">See Current Testimonial  Photo</a></p>
-                                        @else 
-
-                                @endif
-
-                            </div>
-
-                        </div>
-                        <p class="mt-3 text-sm leading-6 text-gray-600">Don't have a customer photo? Use unsplash to
-                            find a "happy customer" <a href="https://unsplash.com/s/photos/happy-customer"
-                                target="_blank" class="text-blue-500">photo</a>.</p>
-                    </div>
-                    <label for="testimonial_text"
-                        class="block text-sm font-medium leading-6 text-gray-900 sm:pt-1.5">Testimonial Quote</label>
-                    <div class="mt-2 sm:col-span-2 sm:mt-0">
-                        <textarea id="testimonial_text" name="customer_testimonial" rows="3"
-                            class="block w-full max-w-2xl rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">@if (Auth::user()->personalSiteDetail){{ Auth::user()->personalSiteDetail->customer_testimonial }}@endif</textarea>
-                        </div>
-                </div>
-                <div class="sm:grid sm:grid-cols-3 sm:items-start sm:gap-2 sm:py-4">
-                    <label for="testimonial_by"
-                        class="block text-sm font-medium leading-6 text-gray-900 sm:pt-1.5">Testimonial By</label>
-                    <div class="mt-2 sm:col-span-2 sm:mt-0">
-                        <input type="text" name="customer_testimonial_name" id="testimonial_by" autocomplete="testimonial_by"
-                            class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6"
-                            value="{{ Auth::user()->personalSiteDetail ? Auth::user()->personalSiteDetail->customer_testimonial_name : 'Enter a customer testimonial name' }}">
-
-                    </div>
-                </div>
-
             </div>
 
             <div class="mt-6 flex items-center justify-end gap-x-6">
