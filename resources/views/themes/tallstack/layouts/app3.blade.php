@@ -143,9 +143,7 @@
                             <!-- Sidebar component, swap this element with another sidebar if you like  **** use x-state:on="Current" x-state:off="Default" for the active page-->
                             <div class="flex grow flex-col gap-y-5 overflow-y-auto bg-white px-6 pb-4">
                                 <div class="flex h-16 shrink-0 items-center">
-                                    <img class="h-8 w-auto"
-                                        src="/themes/tallstack/images/pd_favicon.png"
-                                        alt="Personal Dealer Site">
+                                    <img class="h-8 w-auto" src="{{ asset('themes/tallstack/images/pd_favicon.png') }}" alt="Personal Dealer Site">
                                 </div>
                                 <nav class="flex flex-1 flex-col">
                                     <ul role="list" class="flex flex-1 flex-col gap-y-7">
