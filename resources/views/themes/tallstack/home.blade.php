@@ -15,7 +15,9 @@
                             <a href="/pricing" class="flex items-center w-full px-6 py-3 mb-3 text-lg text-white bg-blue-600 rounded-md sm:mb-0 hover:bg-blue-700 sm:w-auto" data-rounded="rounded-md" data-primary="blue-600">
                                 Get Started
                             </a>
+                            <a href="https://www.producthunt.com/posts/personal-dealer?utm_source=badge-featured&utm_medium=badge&utm_souce=badge-personal&#0045;dealer" target="_blank"><img src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=433023&theme=light" alt="Personal&#0032;Dealer - Websites&#0032;for&#0032;🚗&#0032;Sales&#0032;Professionals | Product Hunt" style="width: 250px; height: 54px;" width="250" height="54" /></a>
                         </div>
+                        
                     </div>
                 </div>
                 <div class="w-full md:w-1/2">

@@ -43,9 +43,10 @@
       </div>
   </div>
   <div class="mt-10 flex justify-end border-t border-gray-900/10 pt-8">
-      <button type="submit" class="rounded-md bg-gray-900 px-3.5 py-2.5 text-center text-sm font-semibold text-white shadow-sm hover:bg-gray-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-500" style="outline-color: gray-100">
-          Send message
-      </button>
+    <button type="submit" class="px-4 py-2 rounded bg-{{ $dealerTheme->pd_theme_primary_color }} text-white shadow-sm hover:bg-{{ $dealerTheme->pd_theme_secondary_color }} focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-bg-{{ $dealerTheme->pd_theme_primary_color }}">
+    Send message
+</button>
+
   </div>
 </form>
 @if (session()->has('message'))

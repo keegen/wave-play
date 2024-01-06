@@ -1,4 +1,4 @@
-<html>
+<html class="h-full bg-white">
 
 <head>
 
@@ -87,18 +87,9 @@
 
 </head>
 
-<body data-new-gr-c-s-check-loaded="14.1110.0" data-gr-ext-installed="">
+<body class="h-full" data-new-gr-c-s-check-loaded="14.1110.0" data-gr-ext-installed="">
     <div class="" style="">
         <div class="bg-white">
-
-            <!--
-    This example requires updating your template:
-  
-    ```
-    <html class="h-full bg-white">
-    <body class="h-full">
-    ```
-    -->
             <div x-data="{ open: false }" @keydown.window.escape="open = false">
 
                 <div x-show="open" class="relative z-50 lg:hidden"
@@ -143,9 +134,7 @@
                             <!-- Sidebar component, swap this element with another sidebar if you like  **** use x-state:on="Current" x-state:off="Default" for the active page-->
                             <div class="flex grow flex-col gap-y-5 overflow-y-auto bg-white px-6 pb-4">
                                 <div class="flex h-16 shrink-0 items-center">
-                                    <img class="h-8 w-auto"
-                                        src="/themes/tallstack/images/pd_favicon.png"
-                                        alt="Personal Dealer Site">
+                                    <img class="h-8 w-auto" src="{{ asset('themes/tallstack/images/pd_favicon.png') }}" alt="Personal Dealer Site">
                                 </div>
                                 <nav class="flex flex-1 flex-col">
                                     <ul role="list" class="flex flex-1 flex-col gap-y-7">
@@ -223,9 +212,9 @@
 
 
                 <!-- Static sidebar for desktop -->
-                <div class="hidden lg:fixed lg:inset-y-0 lg:z-50 lg:flex lg:w-72 lg:flex-col">
-                    <!-- Sidebar component, swap this element with another sidebar if you like  **** x-state:on="Current" x-state:off="Default" for active page -->
-                    <div class="flex grow flex-col gap-y-5 overflow-y-auto border-r border-gray-200 bg-white px-6 pb-4">
+                <div class="hidden lg:fixed lg:inset-y-0 lg:z-50 lg:flex lg:w-72 lg:flex-col lg:flex-grow lg:min-h-screen">
+                <!-- Sidebar component -->
+                    <div class="flex flex-col flex-grow border-r border-gray-200 bg-white px-6 pb-4">
                         <div class="flex h-16 shrink-0 items-center">
                             <img class="h-8 w-auto"
                                 src="/themes/tallstack/images/pd_logo.png"
@@ -429,6 +418,22 @@
       element: "#inbox", // The HTML element where you want to mount the inbox
     });
   </script>
+  <script>
+    window.intercomSettings = {
+      api_base: "https://api-iam.intercom.io",
+      app_id: "lzgxqgzt",
+      name: {!! json_encode(auth()->user()->name) !!}, // Full name
+      user_id: {!! json_encode(auth()->user()->id) !!}, // a UUID for your user
+      email: {!! json_encode(auth()->user()->email) !!}, // the email for your user
+      created_at: "{{ strtotime(auth()->user()->created_at) }}" // Signup date as a Unix timestamp
+    };
+  </script>
+  
+  <script>
+  // We pre-filled your app ID in the widget URL: 'https://widget.intercom.io/widget/lzgxqgzt'
+  (function(){var w=window;var ic=w.Intercom;if(typeof ic==="function"){ic('reattach_activator');ic('update',w.intercomSettings);}else{var d=document;var i=function(){i.c(arguments);};i.q=[];i.c=function(args){i.q.push(args);};w.Intercom=i;var l=function(){var s=d.createElement('script');s.type='text/javascript';s.async=true;s.src='https://widget.intercom.io/widget/lzgxqgzt';var x=d.getElementsByTagName('script')[0];x.parentNode.insertBefore(s,x);};if(document.readyState==='complete'){l();}else if(w.attachEvent){w.attachEvent('onload',l);}else{w.addEventListener('load',l,false);}}})();
+  </script>
+  
 </body>
 
 
