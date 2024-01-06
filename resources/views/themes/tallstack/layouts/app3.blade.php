@@ -1,4 +1,4 @@
-<html>
+<html class="h-full bg-white">
 
 <head>
 
@@ -87,18 +87,9 @@
 
 </head>
 
-<body data-new-gr-c-s-check-loaded="14.1110.0" data-gr-ext-installed="">
+<body class="h-full" data-new-gr-c-s-check-loaded="14.1110.0" data-gr-ext-installed="">
     <div class="" style="">
         <div class="bg-white">
-
-            <!--
-    This example requires updating your template:
-  
-    ```
-    <html class="h-full bg-white">
-    <body class="h-full">
-    ```
-    -->
             <div x-data="{ open: false }" @keydown.window.escape="open = false">
 
                 <div x-show="open" class="relative z-50 lg:hidden"
@@ -221,9 +212,9 @@
 
 
                 <!-- Static sidebar for desktop -->
-                <div class="hidden lg:fixed lg:inset-y-0 lg:z-50 lg:flex lg:w-72 lg:flex-col">
-                    <!-- Sidebar component, swap this element with another sidebar if you like  **** x-state:on="Current" x-state:off="Default" for active page -->
-                    <div class="flex grow flex-col gap-y-5 overflow-y-auto border-r border-gray-200 bg-white px-6 pb-4">
+                <div class="hidden lg:fixed lg:inset-y-0 lg:z-50 lg:flex lg:w-72 lg:flex-col lg:flex-grow lg:min-h-screen">
+                <!-- Sidebar component -->
+                    <div class="flex flex-col flex-grow border-r border-gray-200 bg-white px-6 pb-4">
                         <div class="flex h-16 shrink-0 items-center">
                             <img class="h-8 w-auto"
                                 src="/themes/tallstack/images/pd_logo.png"
