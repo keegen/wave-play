@@ -13,6 +13,7 @@ use Illuminate\Support\Collection;
 use App\Models\Lead;
 use App\Models\UserThemePreference;
 use App\Models\PersonalDealerTheme;
+use App\Models\Review;
 
 
 
@@ -143,7 +144,7 @@ public function showlanding($name)
 
     // Retrieve the user's selected theme
     $userThemePreference = UserThemePreference::where('user_id', $personalDealerSite->user_id)->first();
-    $dealerTheme = PersonalDealerTheme::find($userThemePreference->theme_id);
+    $dealerTheme = PersonalDealerTheme::find($userThemePreference->theme_id ?? null);
 
     // Retrieve Airtable data here
     $newVehicles = $this->fetchAirtableData($personalDealerSite->user, 'new');
@@ -155,8 +156,17 @@ public function showlanding($name)
     // Check if there are no used vehicles available
     $noUsedVehiclesAvailable = empty($usedVehicles['records']);
 
-    return view('/personal_site_detail/dealer_landing', compact('personalDealerSite', 'newVehicles', 'usedVehicles', 'noNewVehiclesAvailable', 'noUsedVehiclesAvailable', 'dealerTheme'));
+    // Retrieve reviews related to the PersonalDealerSite
+    $reviews = Review::where('personal_site_detail_id', $personalDealerSite->id)
+                     ->where('is_approved', 1)
+                     ->get();
+
+    // Check if there are reviews available
+    $reviewsAvailable = !$reviews->isEmpty();
+
+    return view('/personal_site_detail/dealer_landing', compact('personalDealerSite', 'newVehicles', 'usedVehicles', 'noNewVehiclesAvailable', 'noUsedVehiclesAvailable', 'dealerTheme', 'reviews', 'reviewsAvailable'));
 }
+
 
 
 
