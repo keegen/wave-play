@@ -27,8 +27,9 @@ class Plans extends Component
     public function render()
     {
         $user = auth()->user();
-        $detail = $user->personalSiteDetail()->firstOrNew();
 
-        return view('theme::livewire.settings.plans', compact('detail'));
+        // Check if the user is authenticated
+
+        return view('theme::livewire.settings.plans');
     }
 }
