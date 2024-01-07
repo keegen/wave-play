@@ -4,6 +4,9 @@ namespace Wave\Http\Livewire\Settings;
 
 use Livewire\Component;
 use Wave\Http\Controllers\SubscriptionController;
+use App\Models\User;
+use App\PersonalSiteDetail;
+
 
 class Plans extends Component
 {
@@ -23,6 +26,9 @@ class Plans extends Component
 
     public function render()
     {
-        return view('theme::livewire.settings.plans');
+        $user = auth()->user();
+        $detail = $user->personalSiteDetail()->firstOrNew();
+
+        return view('theme::livewire.settings.plans', compact('detail'));
     }
 }
