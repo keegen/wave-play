@@ -10,21 +10,6 @@
         <p class="mt-6 text-lg leading-8 text-gray-600">To get started do this.</p>
     </div>
 
-    <!--
-  This example requires some changes to your config:
-  
-  ```
-  // tailwind.config.js
-  module.exports = {
-    // ...
-    plugins: [
-      // ...
-      require('@tailwindcss/forms'),
-    ],
-  }
-  ```
--->
-
 <form action="{{ Auth::user()->personalSiteDetail ? route('personal_site_detail.update', Auth::user()->personalSiteDetail->id) : route('personal_site_detail.store') }}" method="post" enctype="multipart/form-data">
 
     @csrf
@@ -104,7 +89,7 @@
                                         </label>
                                     
                                     </div>
-                                    <p class="text-xs leading-5 text-gray-600">PNG, JPG, GIF up to 10MB</p>
+                                    <p class="text-xs leading-5 text-gray-600">PNG, JPG, GIF up to 2MB</p>
                                     @if (Auth::user()->personalSiteDetail && Auth::user()->personalSiteDetail->cover_photo)
                                     <p class="text-xs leading-5 text-indigo-600"><a target="_blank" href="../{{ Auth::user()->personalSiteDetail->cover_photo }}">See Current Cover Photo</a></p>
                                             @else 

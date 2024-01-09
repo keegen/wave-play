@@ -49,6 +49,7 @@ class DashboardController extends Controller
         0;
 
     $reviews = Review::all();
+    
 
     return view('themes.tallstack.dashboard.index', [
         'personalDealerSiteId' => $personalDealerSiteId,

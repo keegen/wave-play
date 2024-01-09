@@ -328,9 +328,9 @@
                                 <div @click.away="open = false" class="relative flex items-center h-full ml-3" x-data="{ open: false }">
                                     <div>
                                         <button @click="open = !open" class="flex text-sm transition duration-150 ease-in-out border-2 border-transparent rounded-full focus:outline-none focus:border-gray-300" id="user-menu" aria-label="User menu" aria-haspopup="true" x-bind:aria-expanded="open" aria-expanded="true">
-                                            @if(isset($detail->photo))
-                                                <img class="w-8 h-8 rounded-full" src="{{ Auth::user()->personalSiteDetail->photo . '?' . time() }}" alt="{{ auth()->user()->name }}'s Avatar">
-                                            @else                                             
+                                            @if(isset(Auth::user()->personalSiteDetail) && isset(Auth::user()->personalSiteDetail->photo))
+                                                <img class="w-8 h-8 rounded-full" src="{{ asset('storage/' . Auth::user()->personalSiteDetail->photo) }}" alt="{{ Auth::user()->name }}'s Avatar">
+                                            @else                                          
                                                 <div class="relative w-10 h-10 overflow-hidden bg-gray-100 rounded-full dark:bg-gray-600">
                                                     <svg class="absolute w-12 h-12 text-gray-400 -left-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"></path></svg>
                                                 </div>
