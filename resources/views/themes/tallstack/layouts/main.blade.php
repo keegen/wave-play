@@ -41,7 +41,8 @@
     @if(isset($seo->description))
         <meta name="description" content="{{ $seo->description }}">
     @endif
-    <script src="https://unpkg.com/alpinejs" defer></script>  
+    <script src="https://unpkg.com/alpinejs" defer></script> 
+    <script src="{{ asset('themes/tallstack/js/app.js') }}"></script>
     <!-- Styles -->
     <link href="{{ asset('themes/' . $theme->folder . '/css/app.css') }}" rel="stylesheet">
     @livewireStyles
