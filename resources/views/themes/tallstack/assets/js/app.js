@@ -148,8 +148,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
     interestButtons.forEach((button) => {
         button.addEventListener('click', function() {
-            const modalId = 'modal-' + button.getAttribute('data-modal');
+            const modalId = 'modal-' + button.getAttribute('data-modal').replace(':', '').replace(' ', '');
             const modal = document.getElementById(modalId);
+
             modal.classList.remove('hidden');
             
             // Attach close event to each modal's close button
