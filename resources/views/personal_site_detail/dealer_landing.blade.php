@@ -13,7 +13,6 @@
     <meta name="googlebot" content="index,follow">
 
     <meta name="description" content="This is a PersonalDealer.Site for {{ $personalDealerSite->name }}">
-    <script src="https://cdn.jsdelivr.net/npm/alpinejs@2.8.0/dist/alpine.js"></script>
 
     <link href="{{ asset('themes/' . $theme->folder . '/css/app.css') }}" rel="stylesheet">
     @livewireStyles
@@ -221,8 +220,9 @@
       <p id="fullscreenLoaderMessage" class="mt-4 text-sm font-medium text-white uppercase"></p>
   </div>
   <!-- End Full Loader -->
-
+  @alpine
   @livewireScripts
+  
   @include('theme::partials.toast')
   @if(session('message'))
       <script>setTimeout(function(){ popToast("{{ session('message_type') }}", "{{ session('message') }}"); }, 10);</script>
