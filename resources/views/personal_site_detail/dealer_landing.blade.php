@@ -13,7 +13,6 @@
     <meta name="googlebot" content="index,follow">
 
     <meta name="description" content="This is a PersonalDealer.Site for {{ $personalDealerSite->name }}">
-    <script src="https://cdn.jsdelivr.net/npm/alpinejs@2.8.0/dist/alpine.js"></script>
 
     <link href="{{ asset('themes/' . $theme->folder . '/css/app.css') }}" rel="stylesheet">
     @livewireStyles
