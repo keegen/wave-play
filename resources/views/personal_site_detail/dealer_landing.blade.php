@@ -220,8 +220,9 @@
       <p id="fullscreenLoaderMessage" class="mt-4 text-sm font-medium text-white uppercase"></p>
   </div>
   <!-- End Full Loader -->
-
+  @alpine
   @livewireScripts
+  
   @include('theme::partials.toast')
   @if(session('message'))
       <script>setTimeout(function(){ popToast("{{ session('message_type') }}", "{{ session('message') }}"); }, 10);</script>
