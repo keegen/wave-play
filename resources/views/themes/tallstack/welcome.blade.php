@@ -2,14 +2,38 @@
 
 @section('content')
 
-	<div class="py-20 mx-auto text-center max-w-7xl">
-        <div class="w-full space-y-2">
-            <h1 class="mb-5 text-5xl font-medium">Welcome Aboard!</h1>
-            <p class="py-0 my-0">Thanks for subscribing and welcome aboard.
+<div class="py-20 mx-auto text-center max-w-7xl">
+    <div class="w-full space-y-2">
+        <h1 class="mb-5 text-5xl font-medium">Welcome Aboard!</h1>
+        <p class="py-0 my-0">Thanks for subscribing and welcome aboard.
+            @if(Request::get('complete')){{ 'Please finish completing your profile information below.' }} @endif</p>
+        <p class="py-0 my-0">This file can be modified inside of your <code class="px-2 py-1 font-mono text-base font-medium text-gray-600 bg-indigo-100 rounded-md">resources/views/{{ theme_folder('/welcome.blade.php') }}</code> file ✌️</p>
+    </div>
 
-                @if(Request::get('complete')){{ 'Please finish completing your profile information below.' }} @endif</p>
-            <p class="py-0 my-0">This file can be modified inside of your <code class="px-2 py-1 font-mono text-base font-medium text-gray-600 bg-indigo-100 rounded-md">resources/views/{{ theme_folder('/welcome.blade.php') }}</code> file ✌️</p>
+    <!-- Welcome Section -->
+    <div class="mt-10">
+        <img src="/path-to-your-welcome-image.png" alt="Welcome Image" class="mx-auto mb-8 w-64 h-64">
+        <p class="text-lg text-gray-600 mb-6">
+            Congratulations on taking the next step in your professional journey! You're now part of a community dedicated to excellence and growth.
+        </p>
+        <div class="bg-blue-100 border-t-4 border-blue-500 rounded-b text-blue-900 px-4 py-3 shadow-md mb-6" role="alert">
+            <div class="flex">
+                <div class="py-1">
+                    <!-- Include an icon here if you want -->
+                </div>
+                <div>
+                    <p class="font-bold">Here's what you can look forward to:</p>
+                    <p class="text-sm">Exclusive tools, priority support, and empowering connections.</p>
+                    <p class="text-sm mt-2">
+                        Need a hand? Chat support is ready, or reach out at 
+                        <a href="mailto:personaldealer@gmail.com" class="underline text-blue-600 hover:text-blue-800">personaldealer@gmail.com</a> 
+                        for a direct response.
+                    </p>
+                </div>
+            </div>
         </div>
+        <p class="text-gray-600">We're excited to see the waves you'll make! - The Team at [Your Company Name]</p>
+    </div>
 
         @if(Request::get('complete'))
             <div class="flex flex-col justify-center py-10 sm:py-5 sm:px-6 lg:px-8">
