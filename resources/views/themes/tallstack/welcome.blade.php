@@ -1,39 +1,41 @@
-@extends('theme::layouts.app3')
-
-@section('content')
 
 <div class="py-20 mx-auto text-center max-w-7xl">
-    <div class="w-full space-y-2">
-        <h1 class="mb-5 text-5xl font-medium">Welcome Aboard!</h1>
-        <p class="py-0 my-0">Thanks for subscribing and welcome aboard.
-            @if(Request::get('complete')){{ 'Please finish completing your profile information below.' }} @endif</p>
-        <p class="py-0 my-0">This file can be modified inside of your <code class="px-2 py-1 font-mono text-base font-medium text-gray-600 bg-indigo-100 rounded-md">resources/views/{{ theme_folder('/welcome.blade.php') }}</code> file ✌️</p>
-    </div>
-
-    <!-- Welcome Section -->
-    <div class="mt-10">
-        <img src="/path-to-your-welcome-image.png" alt="Welcome Image" class="mx-auto mb-8 w-64 h-64">
-        <p class="text-lg text-gray-600 mb-6">
-            Congratulations on taking the next step in your professional journey! You're now part of a community dedicated to excellence and growth.
-        </p>
-        <div class="bg-blue-100 border-t-4 border-blue-500 rounded-b text-blue-900 px-4 py-3 shadow-md mb-6" role="alert">
-            <div class="flex">
-                <div class="py-1">
-                    <!-- Include an icon here if you want -->
-                </div>
-                <div>
-                    <p class="font-bold">Here's what you can look forward to:</p>
-                    <p class="text-sm">Exclusive tools, priority support, and empowering connections.</p>
-                    <p class="text-sm mt-2">
-                        Need a hand? Chat support is ready, or reach out at 
-                        <a href="mailto:personaldealer@gmail.com" class="underline text-blue-600 hover:text-blue-800">personaldealer@gmail.com</a> 
-                        for a direct response.
-                    </p>
-                </div>
+    <div class="bg-gray-900 px-6 py-24 sm:py-32 lg:px-8 relative overflow-hidden">
+        <img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&crop=focalpoint&fp-y=.8&w=2830&h=1500&q=80&blend=111827&sat=-100&exp=15&blend-mode=multiply" alt="" class="absolute inset-0 -z-10 h-full w-full object-cover">
+        <div class="text-center">
+            <h1 class="text-5xl font-bold text-white mb-4">Welcome Aboard!</h1>
+            <p class="text-xl text-gray-200 mb-6">You've taken the leap, now dive into building your very own Personal Dealer Site.</p>
+            <div class="inline-block">
+                <a href="#profile-setup" class="text-lg font-medium text-blue-300 hover:underline">Finish setting up your profile</a>
             </div>
         </div>
-        <p class="text-gray-600">We're excited to see the waves you'll make! - The Team at [Your Company Name]</p>
     </div>
+
+    <div class="mt-10">
+        <div class="space-y-4">
+            <h2 class="text-3xl font-medium">Start Your Journey</h2>
+            <p class="text-lg text-gray-600">You've already completed the hardest part. Let's get your site rolling!</p>
+        </div>
+        
+        <div class="mt-8 bg-blue-100 border-l-4 border-blue-500 shadow rounded-lg p-6">
+            <p class="font-bold text-blue-800">Your new journey includes:</p>
+            <ul class="list-disc list-inside text-gray-700">
+                <li>Customizable tools to match your unique brand</li>
+                <li>Priority support whenever you need it</li>
+                <li>Connections to empower your dealership</li>
+            </ul>
+            <p class="mt-4 text-sm">
+                Need assistance? Our chat support is ready, or email 
+                <a href="mailto:personaldealer@gmail.com" class="underline text-blue-600 hover:text-blue-800">personaldealer@gmail.com</a> 
+                for direct help.
+            </p>
+        </div>
+
+        <p class="mt-6 text-gray-600">We're thrilled to see what you create! - The Team at [Your Company Name]</p>
+    </div>
+
+    <div id="profile-setup" class="flex justify-center mt-10">
+        <div class="w-full max-w-md bg-white rounded-lg shadow-md p-6">
 
         @if(Request::get('complete'))
             <div class="flex flex-col justify-center py-10 sm:py-5 sm:px-6 lg:px-8">
@@ -118,6 +120,8 @@
                 </a>
             </div>
         @endif
+        </div>
+    </div>
 
 	</div>
 
