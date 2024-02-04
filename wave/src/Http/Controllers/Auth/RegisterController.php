@@ -161,7 +161,7 @@ class RegisterController extends Controller
         $user->save();
 
 
-        return redirect()->route('wave.dashboard')->with(['message' => 'Successfully updated your profile information.', 'message_type' => 'success']);
+        return redirect()->route('dashboard')->with(['message' => 'Successfully updated your profile information.', 'message_type' => 'success']);
 
     }
 
