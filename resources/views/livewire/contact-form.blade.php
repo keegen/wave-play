@@ -43,8 +43,9 @@
       </div>
   </div>
   <div class="mt-10 flex justify-end border-t border-gray-900/10 pt-8">
-    <button type="submit" class="px-4 py-2 rounded bg-{{ $dealerTheme->pd_theme_primary_color }} text-white shadow-sm hover:bg-{{ $dealerTheme->pd_theme_secondary_color }} focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-bg-{{ $dealerTheme->pd_theme_primary_color }}">
-    Send message
+    <button type="submit" class="px-4 py-2 rounded text-white shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2
+  {{ $dealerTheme ? 'bg-'.$dealerTheme->pd_theme_primary_color.' hover:bg-'.$dealerTheme->pd_theme_secondary_color.' focus:ring-bg-'.$dealerTheme->pd_theme_primary_color : 'bg-gray-500 hover:bg-gray-600 focus:ring-gray-500' }}">
+  Send message
 </button>
 
   </div>

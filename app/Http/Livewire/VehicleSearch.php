@@ -34,11 +34,11 @@ class VehicleSearch extends Component
         // Depending on your data's structure, this function might look different.
         return array_map(function($vehicle) {
             return [
-                'Vehicle' => $vehicle->fields->{'Vehicle'},
-                'Color' => $vehicle->fields->{'Color'},
-                'Stock' => $vehicle->fields->{'Stock'},
-                'MSRP' => $vehicle->fields->{'MSRP'} ?? 'N/A',
-                'Image' => $vehicle->fields->{'Image'},
+            'Vehicle' => property_exists($vehicle->fields, 'Vehicle') ? $vehicle->fields->Vehicle : 'N/A',
+            'Color' => property_exists($vehicle->fields, 'Color') ? $vehicle->fields->Color : 'N/A',
+            'Stock' => property_exists($vehicle->fields, 'Stock') ? $vehicle->fields->Stock : 'N/A',
+            'MSRP' => property_exists($vehicle->fields, 'MSRP') ? $vehicle->fields->MSRP : 'N/A',
+            'Image' => property_exists($vehicle->fields, 'Image') ? $vehicle->fields->Image : 'N/A',
             ];
         }, $vehiclesData['records']);
     }
