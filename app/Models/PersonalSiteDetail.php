@@ -31,6 +31,7 @@ class PersonalSiteDetail extends Model
         'customer_testimonial_name',
         'new_vehicle_link',
         'used_vehicle_link',
+        'custom_domain'
     ];
     /**
      * Get the user that owns the personal site detail.
@@ -43,5 +44,12 @@ class PersonalSiteDetail extends Model
 {
     return $this->hasMany(Lead::class);
 }
+    // In PersonalSiteDetail model
+public function customDomain()
+{
+    return $this->hasOne(CustomDomain::class);
+}
+
+
  
 }

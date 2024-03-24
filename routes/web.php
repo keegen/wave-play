@@ -20,6 +20,7 @@ use App\Http\Controllers\AirtableController;
 use App\Http\Controllers\LeadController;
 use App\Http\Controllers\UserThemeController;
 use App\Http\Controllers\ReviewController;
+use App\Http\Controllers\CustomDomainController;
 
 // Authentication routes
 Auth::routes();
@@ -100,4 +101,12 @@ Route::get('/theme/select', 'App\Http\Controllers\UserThemeController@selectThem
 Route::post('/theme/store', 'App\Http\Controllers\UserThemeController@storeTheme')->name('theme.store');
 
 Route::post('{personalSiteDetail}/reviews', [ReviewController::class, 'store'])->name('reviews.store');
+
+Route::post('/custom_domain', [CustomDomainController::class, 'store'])->name('custom_domain.store');
+// Display form to add a custom domain
+Route::get('/custom-domain/add', [CustomDomainController::class, 'create'])->name('custom_domain.create');
+
+// Handle form submission for adding a custom domain
+Route::post('/custom-domain/add', [CustomDomainController::class, 'store'])->name('custom_domain.store');
+
 

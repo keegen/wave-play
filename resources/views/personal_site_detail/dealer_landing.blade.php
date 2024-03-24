@@ -220,7 +220,7 @@
       <p id="fullscreenLoaderMessage" class="mt-4 text-sm font-medium text-white uppercase"></p>
   </div>
   <!-- End Full Loader -->
-  @alpine
+
   @livewireScripts
   
   @include('theme::partials.toast')
